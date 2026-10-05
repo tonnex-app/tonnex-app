@@ -1,6 +1,6 @@
 const fs = require('fs');
 const ical = require('node-ical');
-const fetch = require('node-fetch'); // Stellen Sie sicher, dass node-fetch installiert ist
+const fetch = require('node-fetch');
 
 const currentYear = new Date().getFullYear();
 
@@ -83,22 +83,23 @@ async function fetchAndParseData() {
         try {
             console.log(`Lade Kalender für: ${prop.address}`);
             
-            // Abrufen des ICS-Inhalts als Text
             const response = await fetch(prop.icsUrl, {
+                method: 'GET',
                 headers: {
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-                    'Accept': 'text/calendar, text/plain, */*'
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+                    'Accept': 'text/calendar, text/plain, */*',
+                    'Accept-Language': 'de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7'
                 }
             });
 
             if (!response.ok) {
-                throw new Error(`HTTP-Fehler ${response.status}`);
+                throw new Error(`HTTP-Fehler ${response.status} (${response.statusText})`);
             }
 
-            const icsData = await response.text();
-            
-            // Parsen des String-Inhalts mit node-ical
-            const events = ical.sync.parseICS(icsData);
+            const icsText = await response.text();
+            console.log(`  -> Empfangen: ${icsText.length} Zeichen`);
+
+            const events = ical.sync.parseICS(icsText);
             const upcomingEvents = [];
             
             for (const key in events) {
@@ -120,13 +121,15 @@ async function fetchAndParseData() {
                 }
             }
 
+            console.log(`  -> Termine gefunden: ${upcomingEvents.length}`);
+
             outputData.push({
                 ...prop,
                 calendarEvents: upcomingEvents
             });
 
         } catch (error) {
-            console.error(`Fehler beim Abrufen für ${prop.address}:`, error.message);
+            console.error(`Fehler bei ${prop.address}:`, error.message);
             outputData.push({
                 ...prop,
                 calendarEvents: []
@@ -135,7 +138,7 @@ async function fetchAndParseData() {
     }
 
     fs.writeFileSync('data.json', JSON.stringify(outputData, null, 2));
-    console.log("data.json erfolgreich aktualisiert!");
+    console.log("data.json erfolgreich geschrieben!");
 }
 
 fetchAndParseData();
