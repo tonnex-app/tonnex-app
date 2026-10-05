@@ -1,0 +1,18 @@
+async function initApp() {
+    document.getElementById('currentDate').innerText = new Date().toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit' });
+    
+    try {
+        // Lädt die vom Cronjob erzeugte JSON-Datei
+        const response = await fetch('./data.json?t=' + new Date().getTime());
+        if (response.ok) {
+            const remoteData = await response.json();
+            if (remoteData.properties) {
+                window.propertiesData = remoteData.properties;
+            }
+        }
+    } catch (e) {
+        console.log("Lade lokale Fallback-Daten");
+    }
+
+    render();
+}
