@@ -1,6 +1,10 @@
 const fs = require('fs');
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const ical = require('node-ical');
+
+// Stealth-Plugin aktivieren, um Bot-Erkennung zu umgehen
+puppeteer.use(StealthPlugin());
 
 const currentYear = new Date().getFullYear();
 
@@ -19,27 +23,36 @@ const properties = [
     { id: 7, city: 'Oberhausen', address: 'Linsingenstr. 2, Oberhausen', tasks: ['Tonnen', 'Putzen'], binDay: 'Freitag', cleanDay: 'Mittwoch', icsUrl: `https://abfallkalender.regioit.de/kalender-oberhausen/downloadfile.jsp?format=ics&jahr=${currentYear}&ort=Oberhausen&strStatic=T2JlcmhhdXNlbmRlZmF1bHRMaW5zaW5nZW5zdHJh32U%3D&hnrStatic=T2JlcmhhdXNlbjQ2MDQ1TGluc2luZ2Vuc3RyYd9lMg%3D%3D&zeit=-%3A00%3A00&fraktion=0&fraktion=5&fraktion=6&fraktion=7&fraktion=10&fraktion=11` }
 ];
 
-async function fetchWithBrowser(browser, url) {
+async function fetchWithStealthBrowser(browser, url) {
     try {
         const page = await browser.newPage();
-        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36');
         
-        const response = await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
+        await page.setViewport({ width: 1920, height: 1080 });
+        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36');
+
+        const response = await page.goto(url, { waitUntil: 'networkidle2', timeout: 35000 });
         const content = await response.text();
         await page.close();
-        
+
         return content.includes('BEGIN:VCALENDAR') ? content : null;
     } catch (e) {
-        console.error(`Browser-Download fehlgeschlagen: ${e.message}`);
+        console.error(`Stealth-Browser Fehler für ${url}:`, e.message);
         return null;
     }
 }
 
 async function fetchAndParseData() {
-    console.log("Starte Abruf mit Puppeteer...");
+    console.log("Starte Abruf mit Puppeteer Stealth...");
+    
     const browser = await puppeteer.launch({
         headless: 'new',
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-accelerated-2d-canvas',
+            '--disable-gpu'
+        ]
     });
 
     const outputData = [];
@@ -47,28 +60,33 @@ async function fetchAndParseData() {
     for (const prop of properties) {
         console.log(`Lade Daten für: ${prop.address}`);
         
-        // Bei AbfallPlus den Feed-Link verwenden
         let targetUrl = prop.icsUrl;
         if (targetUrl.includes('abfallplus.de') && targetUrl.includes('?icsdownload=')) {
             targetUrl = targetUrl.replace('?icsdownload=', '?ics=');
         }
 
-        const rawData = await fetchWithBrowser(browser, targetUrl);
+        const rawData = await fetchWithStealthBrowser(browser, targetUrl);
         const upcomingEvents = [];
 
         if (rawData) {
-            const events = ical.sync.parseICS(rawData);
-            for (const key in events) {
-                const event = events[key];
-                if (event.type === 'VEVENT') {
-                    let summaryText = typeof event.summary === 'string' ? event.summary : (event.summary?.val || 'Abfalltermin');
-                    let eventDate = event.start ? new Date(event.start).toISOString().split('T')[0] : '';
-                    if (eventDate) upcomingEvents.push({ title: summaryText, date: eventDate });
+            try {
+                const events = ical.sync.parseICS(rawData);
+                for (const key in events) {
+                    const event = events[key];
+                    if (event.type === 'VEVENT') {
+                        let summaryText = typeof event.summary === 'string' ? event.summary : (event.summary?.val || 'Abfalltermin');
+                        let eventDate = event.start ? new Date(event.start).toISOString().split('T')[0] : '';
+                        if (eventDate) {
+                            upcomingEvents.push({ title: summaryText, date: eventDate });
+                        }
+                    }
                 }
+                console.log(`  -> Erfolgreich: ${upcomingEvents.length} Termine extrahiert.`);
+            } catch (parseErr) {
+                console.error(`  -> Fehler beim Parsen von ICS:`, parseErr.message);
             }
-            console.log(`  -> Extrahiert: ${upcomingEvents.length} Termine.`);
         } else {
-            console.warn(`  -> Keine Termine empfangen.`);
+            console.warn(`  -> Keine gültigen ICS-Daten empfangen.`);
         }
 
         outputData.push({
