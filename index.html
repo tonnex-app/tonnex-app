@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tonnix - Objekt- & Müll-Manager</title>
+    <title>Tonnex - Objekt- & Müll-Manager</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -18,7 +18,7 @@
             <div class="flex items-center space-x-2">
                 <div class="bg-emerald-500 text-slate-900 p-2 rounded-xl font-black text-xl tracking-wider">TX</div>
                 <div>
-                    <h1 class="text-xl font-extrabold tracking-tight text-white leading-none">TONNIX</h1>
+                    <h1 class="text-xl font-extrabold tracking-tight text-white leading-none">TONNEX</h1>
                     <p class="text-xs text-emerald-400 font-medium mt-0.5">Objekt- & Müll-Manager</p>
                 </div>
             </div>
@@ -47,6 +47,19 @@
             <button onclick="switchTab('all')" id="tabAll" class="flex-1 py-3 text-center text-slate-500 transition-all">Alle Objekte</button>
         </div>
 
+        <!-- Auto Sync & Import Box -->
+        <div class="bg-slate-900 text-white p-4 rounded-2xl shadow-sm space-y-2">
+            <div class="flex justify-between items-center">
+                <h3 class="text-xs font-bold text-emerald-400 uppercase tracking-wider"><i class="fa-solid fa-sync mr-1"></i> Kalender-Sync (.ics)</h3>
+                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">Auto-Feiertage</span>
+            </div>
+            <p class="text-xs text-slate-300">Lade hier die .ics-Dateien der Städte (WBD, EBE, WBO) hoch, um Feiertagsverschiebungen automatisch zu übernehmen.</p>
+            <label class="block w-full bg-emerald-500 text-slate-900 text-center py-2 rounded-xl text-xs font-bold cursor-pointer hover:bg-emerald-400 transition-all mt-1">
+                <i class="fa-solid fa-file-arrow-up mr-1"></i> Stadt-Kalender (.ics) importieren
+                <input type="file" accept=".ics" class="hidden" onchange="importICS(event)">
+            </label>
+        </div>
+
         <!-- Task List Container -->
         <div id="taskList" class="space-y-3">
             <!-- Cards injected via JavaScript -->
@@ -55,7 +68,6 @@
     </main>
 
     <script>
-        // Default Sample Properties (Duisburg, Essen, Oberhausen)
         const initialProperties = [
             { id: 1, city: 'Duisburg', address: 'Turmstr. 36, 47119 Duisburg', tasks: ['Tonnen', 'Putzen'], binDay: 'Dienstag', cleanDay: 'Montag' },
             { id: 2, city: 'Duisburg', address: 'Turmstr. 38, 47119 Duisburg', tasks: ['Tonnen', 'Putzen'], binDay: 'Dienstag', cleanDay: 'Montag' },
@@ -66,10 +78,11 @@
             { id: 7, city: 'Oberhausen', address: 'Linsingenstr. 2, Oberhausen', tasks: ['Tonnen'], binDay: 'Dienstag', cleanDay: '' }
         ];
 
-        let state = JSON.parse(localStorage.getItem('tonnix_state')) || {
+        let state = JSON.parse(localStorage.getItem('tonnex_state')) || {
             completedTasks: {},
             timestamps: {},
-            photos: {}
+            photos: {},
+            icsEvents: []
         };
 
         const weekdays = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
@@ -81,6 +94,41 @@
         function initApp() {
             document.getElementById('currentDate').innerText = new Date().toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit' });
             render();
+        }
+
+        function importICS(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const text = e.target.result;
+                const events = parseICS(text);
+                state.icsEvents = events;
+                saveState();
+                alert(`Erfolgreich ${events.length} Müllabhol-Termine aus der .ics-Datei importiert!`);
+                render();
+            };
+            reader.readAsText(file);
+        }
+
+        function parseICS(icsData) {
+            const events = [];
+            const lines = icsData.split(/\r\n|\n|\r/);
+            let currentEvent = null;
+
+            lines.forEach(line => {
+                if (line.startsWith('BEGIN:VEVENT')) {
+                    currentEvent = {};
+                } else if (line.startsWith('END:VEVENT')) {
+                    if (currentEvent) events.push(currentEvent);
+                    currentEvent = null;
+                } else if (currentEvent) {
+                    if (line.startsWith('SUMMARY:')) currentEvent.summary = line.replace('SUMMARY:', '').trim();
+                    if (line.startsWith('DTSTART')) currentEvent.date = line.split(':')[1]?.substring(0, 8);
+                }
+            });
+            return events;
         }
 
         function switchTab(tab) {
@@ -97,7 +145,8 @@
         }
 
         function toggleTask(id, type) {
-            const key = `${id}_${type}_${new Date().toISOString().slice(0, 10)}`;
+            const dateKey = new Date().toISOString().slice(0, 10);
+            const key = `${id}_${type}_${dateKey}`;
             if (state.completedTasks[key]) {
                 delete state.completedTasks[key];
                 delete state.timestamps[key];
@@ -114,7 +163,8 @@
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const key = `${id}_${type}_${new Date().toISOString().slice(0, 10)}`;
+                    const dateKey = new Date().toISOString().slice(0, 10);
+                    const key = `${id}_${type}_${dateKey}`;
                     state.photos[key] = e.target.result;
                     saveState();
                     render();
@@ -124,7 +174,7 @@
         }
 
         function saveState() {
-            localStorage.setItem('tonnix_state', JSON.stringify(state));
+            localStorage.setItem('tonnex_state', JSON.stringify(state));
         }
 
         function render() {
@@ -138,7 +188,6 @@
                 const todayName = weekdays[todayIdx];
                 const tomorrowName = weekdays[tomorrowIdx];
 
-                // Vorabend-Logik für Tonnen: Tonne muss am Vortag der Abholung raus gestellt werden
                 const isBinToday = prop.binDay === tomorrowName; 
                 const isCleanToday = prop.cleanDay === todayName;
 
@@ -169,13 +218,12 @@
 
                     let tasksHtml = '';
 
-                    // Tonnen Task
                     if (prop.tasks.includes('Tonnen')) {
                         tasksHtml += `
                             <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-xl border border-slate-100">
                                 <div class="flex items-center space-x-2.5">
                                     <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center font-bold">
-                                        <i class="fa-solid font-black fa-trash-can text-sm"></i>
+                                        <i class="fa-solid fa-trash-can text-sm"></i>
                                     </div>
                                     <div>
                                         <div class="text-sm font-semibold">Tonnendienst</div>
@@ -196,7 +244,6 @@
                         `;
                     }
 
-                    // Putzen Task
                     if (prop.tasks.includes('Putzen')) {
                         tasksHtml += `
                             <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-xl border border-slate-100">
@@ -248,7 +295,6 @@
                 `;
             }
 
-            // Update Progress
             const pct = totalCount > 0 ? Math.round((doneCount / totalCount) * 100) : 100;
             document.getElementById('progressBar').style.width = pct + '%';
             document.getElementById('progressPercent').innerText = pct + '%';
