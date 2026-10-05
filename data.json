@@ -87,1101 +87,491 @@
     "icsUrl": "https://abfallkalender.regioit.de/kalender-oberhausen/downloadfile.jsp?format=ics&jahr=2026&ort=Oberhausen&strStatic=T2JlcmhhdXNlbmRlZmF1bHRMaW5zaW5nZW5zdHJh32U%3D&hnrStatic=T2JlcmhhdXNlbjQ2MDQ1TGluc2luZ2Vuc3RyYd9lMg%3D%3D&zeit=-%3A00%3A00&fraktion=0&fraktion=5&fraktion=6&fraktion=7&fraktion=10&fraktion=11",
     "calendarEvents": [
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-01-02"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-01-08"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-01-15"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-01-22"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-01-29"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-02-05"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-02-12"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-02-19"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-02-26"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-03-05"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-03-12"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-03-19"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-03-26"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-04-01"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-04-10"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-04-16"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-04-23"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-04-30"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-05-07"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-05-15"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-05-21"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-05-29"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-06-05"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-06-11"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-06-18"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-06-25"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-07-02"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-07-09"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-07-16"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-07-23"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-07-30"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-08-06"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-08-13"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-08-20"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-08-27"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-09-03"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-09-10"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-09-17"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-09-24"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-10-01"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-10-08"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-10-15"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-10-22"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-10-29"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-11-05"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-11-12"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-11-19"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-11-26"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-12-03"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-12-10"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-12-17"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-12-23"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Restmüll wö."
-        },
+        "title": "Restmüll wö.",
         "date": "2026-12-31"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier Container"
-        },
+        "title": "Papier Container",
         "date": "2026-01-07"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier Container"
-        },
+        "title": "Papier Container",
         "date": "2026-02-04"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier Container"
-        },
+        "title": "Papier Container",
         "date": "2026-03-04"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier Container"
-        },
+        "title": "Papier Container",
         "date": "2026-03-31"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier Container"
-        },
+        "title": "Papier Container",
         "date": "2026-04-29"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier Container"
-        },
+        "title": "Papier Container",
         "date": "2026-05-28"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier Container"
-        },
+        "title": "Papier Container",
         "date": "2026-06-24"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier Container"
-        },
+        "title": "Papier Container",
         "date": "2026-07-22"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier Container"
-        },
+        "title": "Papier Container",
         "date": "2026-08-19"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier Container"
-        },
+        "title": "Papier Container",
         "date": "2026-09-16"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier Container"
-        },
+        "title": "Papier Container",
         "date": "2026-10-14"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier Container"
-        },
+        "title": "Papier Container",
         "date": "2026-11-11"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier Container"
-        },
+        "title": "Papier Container",
         "date": "2026-12-09"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-01-07"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-01-09"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-02-04"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-02-06"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-03-04"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-03-06"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-03-31"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-04-02"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-04-29"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-05-02"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-05-28"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-05-30"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-06-24"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-06-26"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-07-22"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-07-24"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-08-19"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-08-21"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-09-16"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-09-18"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-10-14"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-10-16"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-11-11"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-11-13"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-12-09"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Papier"
-        },
+        "title": "Papier",
         "date": "2026-12-11"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-01-02"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-01-15"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-01-29"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-02-12"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-02-26"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-03-12"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-03-26"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-04-10"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-04-23"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-05-07"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-05-21"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-06-05"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-06-18"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-07-02"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-07-16"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-07-30"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-08-13"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-08-27"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-09-10"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-09-24"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-10-08"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-10-22"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-11-05"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-11-19"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-12-03"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-12-17"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Gelbe Tonne/Gelber Sack"
-        },
+        "title": "Gelbe Tonne/Gelber Sack",
         "date": "2026-12-31"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Weihnachtsbaum"
-        },
+        "title": "Weihnachtsbaum",
         "date": "2026-01-15"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Laubsammlung"
-        },
+        "title": "Laubsammlung",
         "date": "2026-11-14"
       },
       {
-        "title": {
-          "params": {
-            "LANGUAGE": "de"
-          },
-          "val": "Laubsammlung"
-        },
+        "title": "Laubsammlung",
         "date": "2026-12-05"
       }
     ]
