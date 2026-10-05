@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { execSync } = require('child_process');
+const fetch = require('node-fetch');
 const ical = require('node-ical');
 
 const currentYear = new Date().getFullYear();
@@ -75,18 +75,6 @@ const properties = [
     }
 ];
 
-// Hilfsfunktion: Lädt URL mit curl über das Betriebssystem herunter
-function fetchWithCurl(url) {
-    try {
-        const command = `curl -sL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" -H "Accept: text/calendar, text/plain, */*" "${url}"`;
-        const output = execSync(command, { encoding: 'utf-8', timeout: 15000 });
-        return output;
-    } catch (e) {
-        console.error(`  -> Curl Fehler: ${e.message}`);
-        return null;
-    }
-}
-
 async function fetchAndParseData() {
     console.log("Starte Abruf der Abfallkalender...");
     const outputData = [];
@@ -95,12 +83,32 @@ async function fetchAndParseData() {
         try {
             console.log(`Lade Kalender für: ${prop.address}`);
             
-            const rawData = fetchWithCurl(prop.icsUrl);
-            
-            if (!rawData || !rawData.includes('BEGIN:VCALENDAR')) {
-                console.warn(`  -> Warnung: Keine gültigen ICS-Daten für ${prop.address}`);
-                outputData.push({ ...prop, calendarEvents: [] });
-                continue;
+            let downloadUrl = prop.icsUrl;
+            // Wandelt AbfallPlus Download-Links in direkte Feed-Links um
+            if (downloadUrl.includes('abfallplus.de') && downloadUrl.includes('?icsdownload=')) {
+                downloadUrl = downloadUrl.replace('?icsdownload=', '?ics=');
+            }
+
+            const response = await fetch(downloadUrl, {
+                method: 'GET',
+                redirect: 'follow',
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+                    'Accept': 'text/calendar, text/plain, */*',
+                    'Accept-Language': 'de-DE,de;q=0.9',
+                    'Referer': 'https://ical.abfallplus.de/'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP Status ${response.status} (${response.statusText})`);
+            }
+
+            const rawData = await response.text();
+            console.log(`  -> Empfangen: ${rawData.length} Zeichen`);
+
+            if (!rawData.includes('BEGIN:VCALENDAR')) {
+                console.warn(`  -> Warnung: Keine ICS-Formatierung im Antworttext enthalten.`);
             }
 
             const events = ical.sync.parseICS(rawData);
@@ -135,7 +143,7 @@ async function fetchAndParseData() {
                 }
             }
 
-            console.log(`  -> Termine erfolgreich extrahiert: ${upcomingEvents.length}`);
+            console.log(`  -> Extrahiert: ${upcomingEvents.length} Termine`);
 
             outputData.push({
                 ...prop,
@@ -143,7 +151,7 @@ async function fetchAndParseData() {
             });
 
         } catch (error) {
-            console.error(`Fehler bei ${prop.address}:`, error.message);
+            console.error(`  -> Fehler bei ${prop.address}:`, error.message);
             outputData.push({
                 ...prop,
                 calendarEvents: []
@@ -152,7 +160,7 @@ async function fetchAndParseData() {
     }
 
     fs.writeFileSync('data.json', JSON.stringify(outputData, null, 2));
-    console.log("data.json erfolgreich geschrieben!");
+    console.log("data.json erfolgreich gespeichert!");
 }
 
 fetchAndParseData();
