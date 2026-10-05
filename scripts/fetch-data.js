@@ -1,6 +1,5 @@
 const fs = require('fs');
-const https = require('https');
-const http = require('http');
+const { execSync } = require('child_process');
 const ical = require('node-ical');
 
 const currentYear = new Date().getFullYear();
@@ -76,44 +75,16 @@ const properties = [
     }
 ];
 
-function fetchUrlContent(urlStr, maxRedirects = 5) {
-    return new Promise((resolve, reject) => {
-        if (maxRedirects <= 0) return reject(new Error('Zu viele Weiterleitungen'));
-
-        // Falls AbfallPlus-Link, URL für direkten Raw-Inhalt anpassen
-        let targetUrl = urlStr;
-        if (targetUrl.includes('abfallplus.de') && targetUrl.includes('?icsdownload=')) {
-            targetUrl = targetUrl.replace('?icsdownload=', '?ics=');
-        }
-
-        const client = targetUrl.startsWith('https') ? https : http;
-        const options = {
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-                'Accept': 'text/calendar, text/plain, */*',
-                'Referer': 'https://ical.abfallplus.de/'
-            }
-        };
-
-        client.get(targetUrl, options, (res) => {
-            if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-                let redirectUrl = res.headers.location;
-                if (!redirectUrl.startsWith('http')) {
-                    const u = new URL(targetUrl);
-                    redirectUrl = `${u.protocol}//${u.host}${redirectUrl}`;
-                }
-                return resolve(fetchUrlContent(redirectUrl, maxRedirects - 1));
-            }
-
-            if (res.statusCode !== 200) {
-                return reject(new Error(`HTTP Status ${res.statusCode}`));
-            }
-
-            let data = '';
-            res.on('data', (chunk) => { data += chunk; });
-            res.on('end', () => resolve(data));
-        }).on('error', (err) => reject(err));
-    });
+// Hilfsfunktion: Lädt URL mit curl über das Betriebssystem herunter
+function fetchWithCurl(url) {
+    try {
+        const command = `curl -sL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" -H "Accept: text/calendar, text/plain, */*" "${url}"`;
+        const output = execSync(command, { encoding: 'utf-8', timeout: 15000 });
+        return output;
+    } catch (e) {
+        console.error(`  -> Curl Fehler: ${e.message}`);
+        return null;
+    }
 }
 
 async function fetchAndParseData() {
@@ -124,8 +95,13 @@ async function fetchAndParseData() {
         try {
             console.log(`Lade Kalender für: ${prop.address}`);
             
-            const rawData = await fetchUrlContent(prop.icsUrl);
-            console.log(`  -> Empfangen: ${rawData.length} Zeichen`);
+            const rawData = fetchWithCurl(prop.icsUrl);
+            
+            if (!rawData || !rawData.includes('BEGIN:VCALENDAR')) {
+                console.warn(`  -> Warnung: Keine gültigen ICS-Daten für ${prop.address}`);
+                outputData.push({ ...prop, calendarEvents: [] });
+                continue;
+            }
 
             const events = ical.sync.parseICS(rawData);
             const upcomingEvents = [];
