@@ -9,7 +9,7 @@
     ],
     "binDay": "Dienstag",
     "cleanDay": "Montag",
-    "localIcs": "calendars/duisburg_36.ics",
+    "icsUrl": "https://ical.abfallplus.de/?icsdownload=4546-8c166460ba61e3d580099b718649f4b5.ics&c=1&d=0",
     "calendarEvents": []
   },
   {
@@ -21,7 +21,7 @@
     ],
     "binDay": "Dienstag",
     "cleanDay": "",
-    "localIcs": "calendars/duisburg_38.ics",
+    "icsUrl": "https://ical.abfallplus.de/?icsdownload=4546-7e14ab1c4f86434d9b8226e46c18daeb.ics&c=1&d=0",
     "calendarEvents": []
   },
   {
@@ -34,7 +34,7 @@
     ],
     "binDay": "Mittwoch",
     "cleanDay": "Dienstag",
-    "localIcs": "calendars/duisburg_krummenhak.ics",
+    "icsUrl": "https://ical.abfallplus.de/?icsdownload=4546-e00afeba1db151d0f5198900451ef641.ics&c=1&d=0",
     "calendarEvents": []
   },
   {
@@ -46,7 +46,7 @@
     ],
     "binDay": "Donnerstag",
     "cleanDay": "",
-    "localIcs": "calendars/essen_pferdemarkt.ics",
+    "icsUrl": "https://ical.abfallplus.de/?icsdownload=5843-1609b31c11151d4f18ff6cef7f014a6e.ics&c=1&d=0",
     "calendarEvents": []
   },
   {
@@ -59,7 +59,7 @@
     ],
     "binDay": "Freitag",
     "cleanDay": "Donnerstag",
-    "localIcs": "calendars/essen_kreuzeskirch.ics",
+    "icsUrl": "https://ical.abfallplus.de/?icsdownload=5843-ee8ea8013be00d2ba8750dd890b0369d.ics&c=1&d=0",
     "calendarEvents": []
   },
   {
@@ -71,7 +71,7 @@
     ],
     "binDay": "Montag",
     "cleanDay": "",
-    "localIcs": "calendars/essen_gerling.ics",
+    "icsUrl": "https://ical.abfallplus.de/?icsdownload=5843-d69c567e5165d5b703d869a79c9b1f44.ics&c=1&d=0",
     "calendarEvents": []
   },
   {
@@ -84,7 +84,496 @@
     ],
     "binDay": "Freitag",
     "cleanDay": "Mittwoch",
-    "localIcs": "calendars/oberhausen_linsingen.ics",
-    "calendarEvents": []
+    "icsUrl": "https://abfallkalender.regioit.de/kalender-oberhausen/downloadfile.jsp?format=ics&jahr=2026&ort=Oberhausen&strStatic=T2JlcmhhdXNlbmRlZmF1bHRMaW5zaW5nZW5zdHJh32U%3D&hnrStatic=T2JlcmhhdXNlbjQ2MDQ1TGluc2luZ2Vuc3RyYd9lMg%3D%3D&zeit=-%3A00%3A00&fraktion=0&fraktion=5&fraktion=6&fraktion=7&fraktion=10&fraktion=11",
+    "calendarEvents": [
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-01-02"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-01-08"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-01-15"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-01-22"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-01-29"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-02-05"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-02-12"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-02-19"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-02-26"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-03-05"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-03-12"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-03-19"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-03-26"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-04-01"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-04-10"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-04-16"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-04-23"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-04-30"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-05-07"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-05-15"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-05-21"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-05-29"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-06-05"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-06-11"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-06-18"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-06-25"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-07-02"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-07-09"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-07-16"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-07-23"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-07-30"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-08-06"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-08-13"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-08-20"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-08-27"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-09-03"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-09-10"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-09-17"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-09-24"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-10-01"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-10-08"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-10-15"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-10-22"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-10-29"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-11-05"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-11-12"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-11-19"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-11-26"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-12-03"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-12-10"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-12-17"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-12-23"
+      },
+      {
+        "title": "Restmüll wö.",
+        "date": "2026-12-31"
+      },
+      {
+        "title": "Papier Container",
+        "date": "2026-01-07"
+      },
+      {
+        "title": "Papier Container",
+        "date": "2026-02-04"
+      },
+      {
+        "title": "Papier Container",
+        "date": "2026-03-04"
+      },
+      {
+        "title": "Papier Container",
+        "date": "2026-03-31"
+      },
+      {
+        "title": "Papier Container",
+        "date": "2026-04-29"
+      },
+      {
+        "title": "Papier Container",
+        "date": "2026-05-28"
+      },
+      {
+        "title": "Papier Container",
+        "date": "2026-06-24"
+      },
+      {
+        "title": "Papier Container",
+        "date": "2026-07-22"
+      },
+      {
+        "title": "Papier Container",
+        "date": "2026-08-19"
+      },
+      {
+        "title": "Papier Container",
+        "date": "2026-09-16"
+      },
+      {
+        "title": "Papier Container",
+        "date": "2026-10-14"
+      },
+      {
+        "title": "Papier Container",
+        "date": "2026-11-11"
+      },
+      {
+        "title": "Papier Container",
+        "date": "2026-12-09"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-01-07"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-01-09"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-02-04"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-02-06"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-03-04"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-03-06"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-03-31"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-04-02"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-04-29"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-05-02"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-05-28"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-05-30"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-06-24"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-06-26"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-07-22"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-07-24"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-08-19"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-08-21"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-09-16"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-09-18"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-10-14"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-10-16"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-11-11"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-11-13"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-12-09"
+      },
+      {
+        "title": "Papier",
+        "date": "2026-12-11"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-01-02"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-01-15"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-01-29"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-02-12"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-02-26"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-03-12"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-03-26"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-04-10"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-04-23"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-05-07"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-05-21"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-06-05"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-06-18"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-07-02"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-07-16"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-07-30"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-08-13"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-08-27"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-09-10"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-09-24"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-10-08"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-10-22"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-11-05"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-11-19"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-12-03"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-12-17"
+      },
+      {
+        "title": "Gelbe Tonne/Gelber Sack",
+        "date": "2026-12-31"
+      },
+      {
+        "title": "Weihnachtsbaum",
+        "date": "2026-01-15"
+      },
+      {
+        "title": "Laubsammlung",
+        "date": "2026-11-14"
+      },
+      {
+        "title": "Laubsammlung",
+        "date": "2026-12-05"
+      }
+    ]
   }
 ]
