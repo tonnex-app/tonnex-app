@@ -1,4 +1,6 @@
 const fs = require('fs');
+const https = require('https');
+const http = require('http');
 const ical = require('node-ical');
 
 const currentYear = new Date().getFullYear();
@@ -74,6 +76,40 @@ const properties = [
     }
 ];
 
+// Hilfsfunktion: Folgt HTTP/HTTPS Weiterleitungen zuverlässig
+function fetchUrlContent(urlStr, maxRedirects = 5) {
+    return new Promise((resolve, reject) => {
+        if (maxRedirects <= 0) return reject(new Error('Zu viele Weiterleitungen'));
+
+        const client = urlStr.startsWith('https') ? https : http;
+        const options = {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+                'Accept': 'text/calendar, text/plain, */*'
+            }
+        };
+
+        client.get(urlStr, options, (res) => {
+            if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+                let redirectUrl = res.headers.location;
+                if (!redirectUrl.startsWith('http')) {
+                    const u = new URL(urlStr);
+                    redirectUrl = `${u.protocol}//${u.host}${redirectUrl}`;
+                }
+                return resolve(fetchUrlContent(redirectUrl, maxRedirects - 1));
+            }
+
+            if (res.statusCode !== 200) {
+                return reject(new Error(`HTTP Status ${res.statusCode}`));
+            }
+
+            let data = '';
+            res.on('data', (chunk) => { data += chunk; });
+            res.on('end', () => resolve(data));
+        }).on('error', (err) => reject(err));
+    });
+}
+
 async function fetchAndParseData() {
     console.log("Starte Abruf der Abfallkalender...");
     const outputData = [];
@@ -82,30 +118,19 @@ async function fetchAndParseData() {
         try {
             console.log(`Lade Kalender für: ${prop.address}`);
             
-            // fetch mit automatischem Folgen von Weiterleitungen und Browser-Header
-            const response = await fetch(prop.icsUrl, {
-                method: 'GET',
-                redirect: 'follow',
-                headers: {
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-                    'Accept': 'text/calendar, text/plain, */*'
-                }
-            });
+            const rawData = await fetchUrlContent(prop.icsUrl);
+            console.log(`  -> Empfangen: ${rawData.length} Zeichen`);
 
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+            if (!rawData.includes('BEGIN:VCALENDAR')) {
+                console.warn(`  -> Warnung: Empfangene Daten enthalten keinen VCALENDAR-Header.`);
             }
 
-            const icsText = await response.text();
-            
-            // ICS-Text mit node-ical parsen
-            const events = ical.sync.parseICS(icsText);
+            const events = ical.sync.parseICS(rawData);
             const upcomingEvents = [];
 
             for (const key in events) {
                 const event = events[key];
                 if (event.type === 'VEVENT') {
-                    // Titel extrahieren
                     let summaryText = '';
                     if (typeof event.summary === 'string') {
                         summaryText = event.summary;
@@ -115,12 +140,11 @@ async function fetchAndParseData() {
                         summaryText = 'Abfalltermin';
                     }
 
-                    // Datum extrahieren
                     let eventDate = '';
                     if (event.start) {
-                        const dateObj = new Date(event.start);
-                        if (!isNaN(dateObj.getTime())) {
-                            eventDate = dateObj.toISOString().split('T')[0];
+                        const d = new Date(event.start);
+                        if (!isNaN(d.getTime())) {
+                            eventDate = d.toISOString().split('T')[0];
                         }
                     }
 
@@ -133,7 +157,7 @@ async function fetchAndParseData() {
                 }
             }
 
-            console.log(`  -> ${upcomingEvents.length} Termine gefunden.`);
+            console.log(`  -> Termine erfolgreich extrahiert: ${upcomingEvents.length}`);
 
             outputData.push({
                 ...prop,
@@ -141,7 +165,7 @@ async function fetchAndParseData() {
             });
 
         } catch (error) {
-            console.error(`  -> Fehler bei ${prop.address}: ${error.message}`);
+            console.error(`Fehler bei ${prop.address}:`, error.message);
             outputData.push({
                 ...prop,
                 calendarEvents: []
