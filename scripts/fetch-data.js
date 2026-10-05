@@ -76,24 +76,30 @@ const properties = [
     }
 ];
 
-// Hilfsfunktion: Folgt HTTP/HTTPS Weiterleitungen zuverlässig
 function fetchUrlContent(urlStr, maxRedirects = 5) {
     return new Promise((resolve, reject) => {
         if (maxRedirects <= 0) return reject(new Error('Zu viele Weiterleitungen'));
 
-        const client = urlStr.startsWith('https') ? https : http;
+        // Falls AbfallPlus-Link, URL für direkten Raw-Inhalt anpassen
+        let targetUrl = urlStr;
+        if (targetUrl.includes('abfallplus.de') && targetUrl.includes('?icsdownload=')) {
+            targetUrl = targetUrl.replace('?icsdownload=', '?ics=');
+        }
+
+        const client = targetUrl.startsWith('https') ? https : http;
         const options = {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-                'Accept': 'text/calendar, text/plain, */*'
+                'Accept': 'text/calendar, text/plain, */*',
+                'Referer': 'https://ical.abfallplus.de/'
             }
         };
 
-        client.get(urlStr, options, (res) => {
+        client.get(targetUrl, options, (res) => {
             if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
                 let redirectUrl = res.headers.location;
                 if (!redirectUrl.startsWith('http')) {
-                    const u = new URL(urlStr);
+                    const u = new URL(targetUrl);
                     redirectUrl = `${u.protocol}//${u.host}${redirectUrl}`;
                 }
                 return resolve(fetchUrlContent(redirectUrl, maxRedirects - 1));
@@ -120,10 +126,6 @@ async function fetchAndParseData() {
             
             const rawData = await fetchUrlContent(prop.icsUrl);
             console.log(`  -> Empfangen: ${rawData.length} Zeichen`);
-
-            if (!rawData.includes('BEGIN:VCALENDAR')) {
-                console.warn(`  -> Warnung: Empfangene Daten enthalten keinen VCALENDAR-Header.`);
-            }
 
             const events = ical.sync.parseICS(rawData);
             const upcomingEvents = [];
