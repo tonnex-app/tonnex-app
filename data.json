@@ -1,18 +1,86 @@
-async function initApp() {
-    document.getElementById('currentDate').innerText = new Date().toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit' });
-    
-    try {
-        // Lädt die vom Cronjob erzeugte JSON-Datei
-        const response = await fetch('./data.json?t=' + new Date().getTime());
-        if (response.ok) {
-            const remoteData = await response.json();
-            if (remoteData.properties) {
-                window.propertiesData = remoteData.properties;
-            }
-        }
-    } catch (e) {
-        console.log("Lade lokale Fallback-Daten");
+{
+  "lastUpdate": "2026-10-05T09:12:50.067Z",
+  "properties": [
+    {
+      "id": 1,
+      "city": "Duisburg",
+      "address": "Turmstr. 36, 47119 Duisburg",
+      "tasks": [
+        "Tonnen",
+        "Putzen"
+      ],
+      "binDay": "Dienstag",
+      "cleanDay": "Montag",
+      "icsUrl": "https://beispiel-duisburg.de/kalender.ics"
+    },
+    {
+      "id": 2,
+      "city": "Duisburg",
+      "address": "Turmstr. 38, 47119 Duisburg",
+      "tasks": [
+        "Tonnen",
+        "Putzen"
+      ],
+      "binDay": "Dienstag",
+      "cleanDay": "Montag",
+      "icsUrl": "https://beispiel-duisburg.de/kalender.ics"
+    },
+    {
+      "id": 3,
+      "city": "Duisburg",
+      "address": "Krummenhakstr. 26, Duisburg",
+      "tasks": [
+        "Tonnen",
+        "Putzen"
+      ],
+      "binDay": "Mittwoch",
+      "cleanDay": "Dienstag",
+      "icsUrl": ""
+    },
+    {
+      "id": 4,
+      "city": "Essen",
+      "address": "Pferdemarkt 10, Essen",
+      "tasks": [
+        "Tonnen"
+      ],
+      "binDay": "Donnerstag",
+      "cleanDay": "",
+      "icsUrl": ""
+    },
+    {
+      "id": 5,
+      "city": "Essen",
+      "address": "Kreuzeskirchstr. 8, Essen",
+      "tasks": [
+        "Tonnen"
+      ],
+      "binDay": "Freitag",
+      "cleanDay": "",
+      "icsUrl": ""
+    },
+    {
+      "id": 6,
+      "city": "Essen",
+      "address": "Gerlingstr. 43, Essen",
+      "tasks": [
+        "Tonnen"
+      ],
+      "binDay": "Freitag",
+      "cleanDay": "",
+      "icsUrl": ""
+    },
+    {
+      "id": 7,
+      "city": "Oberhausen",
+      "address": "Linsingenstr. 2, Oberhausen",
+      "tasks": [
+        "Tonnen"
+      ],
+      "binDay": "Dienstag",
+      "cleanDay": "",
+      "icsUrl": ""
     }
-
-    render();
+  ],
+  "events": []
 }
