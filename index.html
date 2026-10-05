@@ -93,7 +93,7 @@
             </div>
         </div>
 
-        <!-- Navigation Tabs (Jetzt mit 4 Tabs inklusive Vorschau & Sync) -->
+        <!-- Navigation Tabs -->
         <div class="grid grid-cols-4 gap-1.5 p-1.5 glass-card rounded-2xl text-[11px] font-semibold">
             <button onclick="switchTab('today')" id="tabToday" class="py-2.5 rounded-xl text-center active-tab transition-all">Heute</button>
             <button onclick="switchTab('tomorrow')" id="tabTomorrow" class="py-2.5 rounded-xl text-center text-slate-300 hover:text-white transition-all">Morgen</button>
@@ -118,8 +118,6 @@
         };
 
         const weekdays = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
-        const todayIdx = new Date().getDay();
-        const tomorrowIdx = (todayIdx + 1) % 7;
         let currentTab = 'today';
 
         async function initApp() {
@@ -209,7 +207,6 @@
             }
 
             if (currentTab === 'year') {
-                // Vorschau-Ansicht aller Termine bis Jahresende
                 propertiesData.forEach(prop => {
                     const card = document.createElement('div');
                     card.className = "glass-card p-4 rounded-3xl space-y-3";
@@ -236,33 +233,50 @@
                 return;
             }
 
-            // Heute & Morgen Logik
+            // Datumsberechnung (Müll wird am Vortag benötigt)
+            const todayDateObj = new Date();
+            const todayStr = todayDateObj.toISOString().slice(0, 10);
+            
+            const tomorrowDateObj = new Date();
+            tomorrowDateObj.setDate(tomorrowDateObj.getDate() + 1);
+            const tomorrowStr = tomorrowDateObj.toISOString().slice(0, 10);
+
+            const dayAfterTomorrowDateObj = new Date();
+            dayAfterTomorrowDateObj.setDate(dayAfterTomorrowDateObj.getDate() + 2);
+            const dayAfterTomorrowStr = dayAfterTomorrowDateObj.toISOString().slice(0, 10);
+
+            // Tab "Heute" zeigt Müll für morgen (Rausstellen heute)
+            // Tab "Morgen" zeigt Müll für übermorgen (Rausstellen morgen)
+            const trashTargetDateStr = currentTab === 'today' ? tomorrowStr : dayAfterTomorrowStr;
+            const trashTargetObj = currentTab === 'today' ? tomorrowDateObj : dayAfterTomorrowDateObj;
+            const trashTargetWeekdayName = weekdays[trashTargetObj.getDay()];
+
+            // Putzen gilt am jeweiligen Tag selbst
+            const cleanTargetDateObj = currentTab === 'today' ? todayDateObj : tomorrowDateObj;
+            const cleanTargetStr = currentTab === 'today' ? todayStr : tomorrowStr;
+            const cleanTargetWeekdayName = weekdays[cleanTargetDateObj.getDay()];
+
             propertiesData.forEach(prop => {
-                const todayStr = new Date().toISOString().slice(0, 10);
-                const tomorrowDate = new Date();
-                tomorrowDate.setDate(tomorrowDate.getDate() + 1);
-                const tomorrowStr = tomorrowDate.toISOString().slice(0, 10);
+                // 1. Müll-Prüfung (Vortag-Logik)
+                const hasApiBinEvent = (prop.calendarEvents || []).some(ev => ev.date === trashTargetDateStr);
+                const isBinMatch = prop.binDay === trashTargetWeekdayName;
+                const needsBin = hasApiBinEvent || isBinMatch;
 
-                const targetDateStr = currentTab === 'today' ? todayStr : tomorrowStr;
+                // 2. Putz-Prüfung (Echter Tag)
+                const hasApiCleanEvent = (prop.calendarEvents || []).some(ev => ev.date === cleanTargetStr);
+                const isCleanMatch = prop.cleanDay === cleanTargetWeekdayName;
+                const needsClean = hasApiCleanEvent || isCleanMatch;
 
-                // Prüfen ob API einen Termin an diesem Tag liefert
-                const hasApiEventToday = (prop.calendarEvents || []).some(ev => ev.date === targetDateStr);
-                
-                const todayName = weekdays[todayIdx];
-                const tomorrowName = weekdays[tomorrowIdx];
-                const isBinDayMatch = currentTab === 'today' ? prop.binDay === tomorrowName : prop.binDay === weekdays[(tomorrowIdx + 1) % 7];
-                const isCleanDayMatch = currentTab === 'today' ? prop.cleanDay === todayName : prop.cleanDay === tomorrowName;
-
-                if (hasApiEventToday || isBinDayMatch || isCleanDayMatch) {
-                    const dateKey = targetDateStr;
+                if (needsBin || needsClean) {
+                    const dateKey = currentTab === 'today' ? todayStr : tomorrowStr;
                     const binDoneKey = `${prop.id}_bin_${dateKey}`;
                     const cleanDoneKey = `${prop.id}_clean_${dateKey}`;
 
                     const isBinDone = !!state.completedTasks[binDoneKey];
                     const isCleanDone = !!state.completedTasks[cleanDoneKey];
 
-                    if (prop.tasks.includes('Tonnen')) { totalCount++; if (isBinDone) doneCount++; }
-                    if (prop.tasks.includes('Putzen')) { totalCount++; if (isCleanDone) doneCount++; }
+                    if (needsBin && prop.tasks.includes('Tonnen')) { totalCount++; if (isBinDone) doneCount++; }
+                    if (needsClean && prop.tasks.includes('Putzen')) { totalCount++; if (isCleanDone) doneCount++; }
 
                     const cityBadgeColor = prop.city === 'Duisburg' ? 'bg-blue-500/20 text-blue-300 border-blue-400/30' : 
                                            prop.city === 'Essen' ? 'bg-emerald-500/20 text-emerald-300 border-emerald-400/30' : 
@@ -272,7 +286,7 @@
                     card.className = "glass-card p-4 rounded-3xl space-y-3";
 
                     let tasksHtml = '';
-                    if (prop.tasks.includes('Tonnen')) {
+                    if (needsBin && prop.tasks.includes('Tonnen')) {
                         tasksHtml += `
                             <div class="flex items-center justify-between p-3 rounded-2xl glass-inner">
                                 <div class="flex items-center space-x-3">
@@ -281,7 +295,7 @@
                                     </div>
                                     <div>
                                         <div class="text-xs font-bold text-white">Tonnendienst</div>
-                                        <div class="text-[11px] text-slate-300">Abholung geplant</div>
+                                        <div class="text-[11px] text-slate-300">Müllabholung am ${trashTargetObj.toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit' })}</div>
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-2">
@@ -297,7 +311,7 @@
                         `;
                     }
 
-                    if (prop.tasks.includes('Putzen')) {
+                    if (needsClean && prop.tasks.includes('Putzen')) {
                         tasksHtml += `
                             <div class="flex items-center justify-between p-3 rounded-2xl glass-inner">
                                 <div class="flex items-center space-x-3">
@@ -342,7 +356,7 @@
                             <i class="fa-solid fa-check-double"></i>
                         </div>
                         <h3 class="font-bold text-white text-base">Alles erledigt!</h3>
-                        <p class="text-xs text-slate-300">Für diesen Zeitraum stehen aktuell keine Aufgaben an.</p>
+                        <p class="text-xs text-slate-300">Für diesen Tag stehen keine Aufgaben an.</p>
                     </div>
                 `;
             }
