@@ -9,7 +9,7 @@
     ],
     "binDay": "Dienstag",
     "cleanDay": "Montag",
-    "icsUrl": "https://ical.abfallplus.de/?icsdownload=4546-8c166460ba61e3d580099b718649f4b5.ics&c=1&d=0",
+    "localIcs": "calendars/duisburg_36.ics",
     "calendarEvents": []
   },
   {
@@ -21,7 +21,7 @@
     ],
     "binDay": "Dienstag",
     "cleanDay": "",
-    "icsUrl": "https://ical.abfallplus.de/?icsdownload=4546-7e14ab1c4f86434d9b8226e46c18daeb.ics&c=1&d=0",
+    "localIcs": "calendars/duisburg_38.ics",
     "calendarEvents": []
   },
   {
@@ -34,7 +34,7 @@
     ],
     "binDay": "Mittwoch",
     "cleanDay": "Dienstag",
-    "icsUrl": "https://ical.abfallplus.de/?icsdownload=4546-e00afeba1db151d0f5198900451ef641.ics&c=1&d=0",
+    "localIcs": "calendars/duisburg_krummenhak.ics",
     "calendarEvents": []
   },
   {
@@ -46,7 +46,7 @@
     ],
     "binDay": "Donnerstag",
     "cleanDay": "",
-    "icsUrl": "https://ical.abfallplus.de/?icsdownload=5843-1609b31c11151d4f18ff6cef7f014a6e.ics&c=1&d=0",
+    "localIcs": "calendars/essen_pferdemarkt.ics",
     "calendarEvents": []
   },
   {
@@ -59,7 +59,7 @@
     ],
     "binDay": "Freitag",
     "cleanDay": "Donnerstag",
-    "icsUrl": "https://ical.abfallplus.de/?icsdownload=5843-ee8ea8013be00d2ba8750dd890b0369d.ics&c=1&d=0",
+    "localIcs": "calendars/essen_kreuzeskirch.ics",
     "calendarEvents": []
   },
   {
@@ -71,7 +71,7 @@
     ],
     "binDay": "Montag",
     "cleanDay": "",
-    "icsUrl": "https://ical.abfallplus.de/?icsdownload=5843-d69c567e5165d5b703d869a79c9b1f44.ics&c=1&d=0",
+    "localIcs": "calendars/essen_gerling.ics",
     "calendarEvents": []
   },
   {
@@ -84,7 +84,7 @@
     ],
     "binDay": "Freitag",
     "cleanDay": "Mittwoch",
-    "icsUrl": "https://abfallkalender.regioit.de/kalender-oberhausen/downloadfile.jsp?format=ics&jahr=2026&ort=Oberhausen&strStatic=T2JlcmhhdXNlbmRlZmF1bHRMaW5zaW5nZW5zdHJh32U%3D&hnrStatic=T2JlcmhhdXNlbjQ2MDQ1TGluc2luZ2Vuc3RyYd9lMg%3D%3D&zeit=-%3A00%3A00&fraktion=0&fraktion=5&fraktion=6&fraktion=7&fraktion=10&fraktion=11",
+    "localIcs": "calendars/oberhausen_linsingen.ics",
     "calendarEvents": []
   }
 ]
