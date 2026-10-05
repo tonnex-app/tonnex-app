@@ -1,0 +1,33 @@
+name: Tonnex Auto Sync
+
+on:
+  schedule:
+    # Läuft jeden Tag um 02:00 Uhr UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch: # Erlaubt manuelles Auslösen per Button auf GitHub
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code auschecken
+        uses: actions/checkout@v3
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Abhängigkeiten installieren
+        run: npm install node-fetch node-ical
+
+      - name: Kalenderdaten abrufen
+        run: node scripts/fetch-data.js
+
+      - name: Änderungen in GitHub speichern
+        run: |
+          git config --global user.name "Tonnex Bot"
+          git config --global user.email "bot@tonnex.app"
+          git add data.json
+          git commit -m "Auto-Update der Abfalltermine [skip ci]" || exit 0
+          git push
