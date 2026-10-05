@@ -5,7 +5,6 @@ const ical = require('node-ical');
 const currentYear = new Date().getFullYear();
 
 const properties = [
-    // --- ESSEN (Gerlingstr. 41 über abfall.io API) ---
     { 
         id: 6, 
         city: 'Essen', 
@@ -13,10 +12,8 @@ const properties = [
         tasks: ['Tonnen'], 
         binDay: 'Montag', 
         cleanDay: '', 
-        icsUrl: 'https://api.abfall.io/?key=51be67f3758f1fb57b420efe065c0663&mode=export&idhousenumber=69956&wastetypes=66,177,42&timeperiod=20260101-20261231&showinactive=false&type=ics' 
+        icsUrl: `https://api.abfall.io/?key=51be67f3758f1fb57b420efe065c0663&mode=export&idhousenumber=69956&wastetypes=66,177,42&timeperiod=${currentYear}0101-${currentYear}1231&showinactive=false&type=ics` 
     },
-
-    // --- OBERHAUSEN (RegioIT) ---
     { 
         id: 7, 
         city: 'Oberhausen', 
@@ -26,52 +23,47 @@ const properties = [
         cleanDay: 'Mittwoch', 
         icsUrl: `https://abfallkalender.regioit.de/kalender-oberhausen/downloadfile.jsp?format=ics&jahr=${currentYear}&ort=Oberhausen&strStatic=T2JlcmhhdXNlbmRlZmF1bHRMaW5zaW5nZW5zdHJh32U%3D&hnrStatic=T2JlcmhhdXNlbjQ2MDQ1TGluc2luZ2Vuc3RyYd9lMg%3D%3D&zeit=-%3A00%3A00&fraktion=0&fraktion=5&fraktion=6&fraktion=7&fraktion=10&fraktion=11` 
     }
-    // (Füge hier nach demselben Prinzip die anderen Adressen hinzu, sobald du deren api.abfall.io-Links hast)
 ];
 
-function parseIcsData(rawData) {
-    const events = ical.sync.parseICS(rawData);
-    const upcomingEvents = [];
-
-    for (const key in events) {
-        const event = events[key];
-        if (event.type === 'VEVENT') {
-            let summaryText = typeof event.summary === 'string' ? event.summary : (event.summary?.val || 'Abfalltermin');
-            let eventDate = event.start ? new Date(event.start).toISOString().split('T')[0] : '';
-            if (eventDate) {
-                upcomingEvents.push({ title: summaryText, date: eventDate });
-            }
-        }
-    }
-    return upcomingEvents;
-}
-
 async function fetchAndParseData() {
-    console.log("Starte direkten API-Abruf der Kalender...");
+    console.log(`Starte Live-Abruf für ${currentYear}...`);
     const outputData = [];
 
     for (const prop of properties) {
-        console.log(`Lade Daten für: ${prop.address}`);
+        console.log(`Lade: ${prop.address}`);
         let calendarEvents = [];
 
         try {
             const res = await fetch(prop.icsUrl, {
-                headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
+                headers: { 
+                    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Mobile/15E148 Safari/604.1',
+                    'Accept': 'text/calendar, application/octet-stream, text/plain, */*'
+                }
             });
 
             if (res.ok) {
                 const text = await res.text();
+                console.log(`  -> Antwort erhalten (${text.length} Zeichen). Enthält VCALENDAR: ${text.includes('BEGIN:VCALENDAR')}`);
+                
                 if (text.includes('BEGIN:VCALENDAR')) {
-                    calendarEvents = parseIcsData(text);
-                    console.log(`  -> Erfolgreich: ${calendarEvents.length} Termine geladen.`);
-                } else {
-                    console.warn(`  -> Antwort war kein gültiger Kalender.`);
+                    const events = ical.sync.parseICS(text);
+                    for (const key in events) {
+                        const event = events[key];
+                        if (event.type === 'VEVENT') {
+                            let summaryText = typeof event.summary === 'string' ? event.summary : (event.summary?.val || 'Abfalltermin');
+                            let eventDate = event.start ? new Date(event.start).toISOString().split('T')[0] : '';
+                            if (eventDate) {
+                                calendarEvents.push({ title: summaryText, date: eventDate });
+                            }
+                        }
+                    }
+                    console.log(`  -> Erfolgreich geparst: ${calendarEvents.length} Termine gefunden.`);
                 }
             } else {
-                console.error(`  -> HTTP-Fehler: ${res.status}`);
+                console.error(`  -> HTTP-Fehler: ${res.status} ${res.statusText}`);
             }
         } catch (e) {
-            console.error(`  -> Abruf-Fehler: ${e.message}`);
+            console.error(`  -> Fehler beim Abruf: ${e.message}`);
         }
 
         outputData.push({
@@ -87,7 +79,7 @@ async function fetchAndParseData() {
     }
 
     fs.writeFileSync('data.json', JSON.stringify(outputData, null, 2));
-    console.log("data.json erfolgreich aktualisiert!");
+    console.log("data.json erfolgreich geschrieben!");
 }
 
 fetchAndParseData();
