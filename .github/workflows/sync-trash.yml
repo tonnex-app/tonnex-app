@@ -20,9 +20,9 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Abhängigkeiten & Chrome für Puppeteer installieren
+      - name: Abhängigkeiten & Puppeteer Stealth installieren
         run: |
-          npm install node-fetch node-ical puppeteer
+          npm install node-fetch node-ical puppeteer puppeteer-extra puppeteer-extra-plugin-stealth
           npx puppeteer browsers install chrome
 
       - name: Kalenderdaten abrufen
