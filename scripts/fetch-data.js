@@ -4,7 +4,6 @@ const ical = require('node-ical');
 // Dynamisches Jahr für Links wie Oberhausen
 const currentYear = new Date().getFullYear();
 
-// Liste aller Objekte mit ihren spezifischen AbfallPlus & RegioIT ICS-Links
 const properties = [
     // --- DUISBURG ---
     { 
@@ -72,7 +71,6 @@ const properties = [
         tasks: ['Tonnen', 'Putzen'], 
         binDay: 'Freitag', 
         cleanDay: 'Mittwoch', 
-        // Fügt automatisch immer das aktuelle Jahr in die URL ein
         icsUrl: `https://abfallkalender.regioit.de/kalender-oberhausen/downloadfile.jsp?format=ics&jahr=${currentYear}&ort=Oberhausen&strStatic=T2JlcmhhdXNlbmRlZmF1bHRMaW5zaW5nZW5zdHJh32U%3D&hnrStatic=T2JlcmhhdXNlbjQ2MDQ1TGluc2luZ2Vuc3RyYd9lMg%3D%3D&zeit=-%3A00%3A00&fraktion=0&fraktion=5&fraktion=6&fraktion=7&fraktion=10&fraktion=11` 
     }
 ];
@@ -84,16 +82,32 @@ async function fetchAndParseData() {
     for (const prop of properties) {
         try {
             console.log(`Lade Kalender für: ${prop.address}`);
-            const events = await ical.async.fromURL(prop.icsUrl);
+            
+            // Mit Browser-User-Agent anfragen, damit AbfallPlus die Anfrage nicht blockiert
+            const events = await ical.async.fromURL(prop.icsUrl, {
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+                }
+            });
             
             const upcomingEvents = [];
             
             for (const key in events) {
                 const event = events[key];
                 if (event.type === 'VEVENT') {
+                    // Titel sauber extrahieren (egal ob String oder Objekt)
+                    let summaryText = '';
+                    if (typeof event.summary === 'string') {
+                        summaryText = event.summary;
+                    } else if (event.summary && event.summary.val) {
+                        summaryText = event.summary.val;
+                    } else {
+                        summaryText = 'Abfalltermin';
+                    }
+
                     upcomingEvents.push({
-                        title: event.summary,
-                        date: event.start ? event.start.toISOString().split('T')[0] : ''
+                        title: summaryText,
+                        date: event.start ? new Date(event.start).toISOString().split('T')[0] : ''
                     });
                 }
             }
@@ -112,7 +126,6 @@ async function fetchAndParseData() {
         }
     }
 
-    // Speichere das Ergebnis zentral in data.json
     fs.writeFileSync('data.json', JSON.stringify(outputData, null, 2));
     console.log("data.json erfolgreich aktualisiert!");
 }
