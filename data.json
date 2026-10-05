@@ -1,5 +1,1669 @@
 [
   {
+    "id": 1,
+    "city": "Duisburg",
+    "address": "Turmstr. 36, Duisburg",
+    "tasks": [
+      "Tonnen",
+      "Putzen"
+    ],
+    "binDay": "Dienstag",
+    "cleanDay": "Montag",
+    "icsUrl": "https://api.abfall.io/?key=80acad6c77fe9342ebafad29a8c58bf6&mode=export&idhousenumber=47629&wastetypes=18,127,27&timeperiod=20260101-20261231&showinactive=false&type=ics",
+    "calendarEvents": [
+      {
+        "title": "Hausmüll",
+        "date": "2026-01-07"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-01-14"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-01-14"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-01-21"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-01-27"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-01-28"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-01-28"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-02-04"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-02-11"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-02-11"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-02-19"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-02-24"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-02-25"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-02-25"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-03-04"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-03-11"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-03-11"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-03-18"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-03-24"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-03-25"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-03-25"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-04-01"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-04-09"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-04-09"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-04-15"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-04-21"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-04-22"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-04-22"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-04-29"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-05-06"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-05-06"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-05-13"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-05-19"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-05-20"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-05-20"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-05-28"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-06-03"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-06-03"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-06-10"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-06-16"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-06-17"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-06-17"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-06-24"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-07-01"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-07-01"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-07-08"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-07-14"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-07-15"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-07-15"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-07-22"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-07-29"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-07-29"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-08-05"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-08-11"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-08-12"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-08-12"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-08-19"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-08-26"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-08-26"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-09-02"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-09-08"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-09-09"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-09-09"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-09-16"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-09-23"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-09-23"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-09-30"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-10-06"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-10-07"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-10-07"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-10-14"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-10-21"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-10-21"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-10-28"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-11-03"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-11-04"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-11-04"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-11-11"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-11-18"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-11-18"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-11-25"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-12-01"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-12-02"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-12-02"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-12-09"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-12-16"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-12-16"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-12-22"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-12-29"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-12-30"
+      },
+      {
+        "title": "Altpapier",
+        "date": "2026-12-30"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "city": "Duisburg",
+    "address": "Turmstr. 38, Duisburg",
+    "tasks": [
+      "Tonnen"
+    ],
+    "binDay": "Dienstag",
+    "cleanDay": "",
+    "icsUrl": "https://api.abfall.io/?key=80acad6c77fe9342ebafad29a8c58bf6&mode=export&idhousenumber=47631&wastetypes=18,1075,127&timeperiod=20260101-20261231&showinactive=false&type=ics",
+    "calendarEvents": [
+      {
+        "title": "Hausmüll",
+        "date": "2026-01-07"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-01-14"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-01-21"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-01-27"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-01-28"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-02-04"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-02-11"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-02-19"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-02-24"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-02-25"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-03-04"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-03-11"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-03-18"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-03-24"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-03-25"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-04-01"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-04-09"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-04-15"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-04-21"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-04-22"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-04-29"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-05-06"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-05-13"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-05-19"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-05-20"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-05-28"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-06-03"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-06-10"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-06-16"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-06-17"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-06-24"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-07-01"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-07-08"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-07-14"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-07-15"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-07-22"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-07-29"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-08-05"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-08-11"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-08-12"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-08-19"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-08-26"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-09-02"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-09-08"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-09-09"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-09-16"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-09-23"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-09-30"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-10-06"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-10-07"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-10-14"
+      },
+      {
+        "title": "Laubsack",
+        "date": "2026-10-14"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-10-21"
+      },
+      {
+        "title": "Laubsack",
+        "date": "2026-10-21"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-10-28"
+      },
+      {
+        "title": "Laubsack",
+        "date": "2026-10-28"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-11-03"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-11-04"
+      },
+      {
+        "title": "Laubsack",
+        "date": "2026-11-04"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-11-11"
+      },
+      {
+        "title": "Laubsack",
+        "date": "2026-11-11"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-11-18"
+      },
+      {
+        "title": "Laubsack",
+        "date": "2026-11-18"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-11-25"
+      },
+      {
+        "title": "Laubsack",
+        "date": "2026-11-25"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-12-01"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-12-02"
+      },
+      {
+        "title": "Laubsack",
+        "date": "2026-12-02"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-12-09"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-12-16"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-12-22"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-12-29"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-12-30"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "city": "Duisburg",
+    "address": "Krummenhakstr. 36, Duisburg",
+    "tasks": [
+      "Tonnen",
+      "Putzen"
+    ],
+    "binDay": "Mittwoch",
+    "cleanDay": "Dienstag",
+    "icsUrl": "https://api.abfall.io/?key=80acad6c77fe9342ebafad29a8c58bf6&mode=export&idhousenumber=35330&wastetypes=18,127&timeperiod=20260101-20261231&showinactive=false&type=ics",
+    "calendarEvents": [
+      {
+        "title": "Hausmüll",
+        "date": "2026-01-06"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-01-13"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-01-19"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-01-20"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-01-27"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-02-03"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-02-10"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-02-16"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-02-18"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-02-24"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-03-03"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-03-10"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-03-16"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-03-17"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-03-24"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-03-31"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-04-08"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-04-13"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-04-14"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-04-21"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-04-28"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-05-05"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-05-11"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-05-12"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-05-19"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-05-27"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-06-02"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-06-08"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-06-09"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-06-16"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-06-23"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-06-30"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-07-06"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-07-07"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-07-14"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-07-21"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-07-28"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-08-03"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-08-04"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-08-11"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-08-18"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-08-25"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-08-31"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-09-01"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-09-08"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-09-15"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-09-22"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-09-28"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-09-29"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-10-06"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-10-13"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-10-20"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-10-26"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-10-27"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-11-03"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-11-10"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-11-17"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-11-23"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-11-24"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-12-01"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-12-08"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-12-15"
+      },
+      {
+        "title": "Wertstofftonne",
+        "date": "2026-12-19"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-12-21"
+      },
+      {
+        "title": "Hausmüll",
+        "date": "2026-12-29"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "city": "Essen",
+    "address": "Pferdemarkt 10, Essen",
+    "tasks": [
+      "Tonnen"
+    ],
+    "binDay": "Donnerstag",
+    "cleanDay": "",
+    "icsUrl": "https://api.abfall.io/?key=51be67f3758f1fb57b420efe065c0663&mode=export&idhousenumber=78450&wastetypes=51,66,177&timeperiod=20260101-20261231&showinactive=false&type=ics",
+    "calendarEvents": [
+      {
+        "title": "Graue Tonne",
+        "date": "2026-01-02"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-01-08"
+      },
+      {
+        "title": "Blaue Tonne",
+        "date": "2026-01-09"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-01-12"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-01-15"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-01-22"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-01-26"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-01-29"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-02-05"
+      },
+      {
+        "title": "Blaue Tonne",
+        "date": "2026-02-06"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-02-09"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-02-12"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-02-20"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-02-23"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-02-26"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-03-05"
+      },
+      {
+        "title": "Blaue Tonne",
+        "date": "2026-03-06"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-03-09"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-03-12"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-03-19"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-03-23"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-03-26"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-04-01"
+      },
+      {
+        "title": "Blaue Tonne",
+        "date": "2026-04-02"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-04-07"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-04-10"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-04-16"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-04-20"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-04-23"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-04-29"
+      },
+      {
+        "title": "Blaue Tonne",
+        "date": "2026-04-30"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-05-04"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-05-07"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-05-15"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-05-18"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-05-21"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-05-29"
+      },
+      {
+        "title": "Blaue Tonne",
+        "date": "2026-05-30"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-06-01"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-06-05"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-06-11"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-06-15"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-06-18"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-06-25"
+      },
+      {
+        "title": "Blaue Tonne",
+        "date": "2026-06-26"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-06-29"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-07-02"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-07-09"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-07-13"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-07-16"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-07-23"
+      },
+      {
+        "title": "Blaue Tonne",
+        "date": "2026-07-24"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-07-27"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-07-30"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-08-06"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-08-10"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-08-13"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-08-20"
+      },
+      {
+        "title": "Blaue Tonne",
+        "date": "2026-08-21"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-08-24"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-08-27"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-09-03"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-09-07"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-09-10"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-09-17"
+      },
+      {
+        "title": "Blaue Tonne",
+        "date": "2026-09-18"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-09-21"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-09-24"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-10-01"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-10-05"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-10-08"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-10-15"
+      },
+      {
+        "title": "Blaue Tonne",
+        "date": "2026-10-16"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-10-19"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-10-22"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-10-29"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-11-02"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-11-05"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-11-12"
+      },
+      {
+        "title": "Blaue Tonne",
+        "date": "2026-11-13"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-11-16"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-11-19"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-11-26"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-11-30"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-12-03"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-12-10"
+      },
+      {
+        "title": "Blaue Tonne",
+        "date": "2026-12-11"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-12-14"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-12-17"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-12-23"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-12-28"
+      },
+      {
+        "title": "Graue Tonne",
+        "date": "2026-12-31"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "city": "Essen",
+    "address": "Kreuzeskirchstr. 8, Essen",
+    "tasks": [
+      "Tonnen",
+      "Putzen"
+    ],
+    "binDay": "Freitag",
+    "cleanDay": "Donnerstag",
+    "icsUrl": "https://api.abfall.io/?key=51be67f3758f1fb57b420efe065c0663&mode=export&idhousenumber=3382&wastetypes=66,1582&timeperiod=20260101-20261231&showinactive=false&type=ics",
+    "calendarEvents": [
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-01-06"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-01-12"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-01-13"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-01-20"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-01-26"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-01-27"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-02-03"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-02-09"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-02-10"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-02-18"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-02-23"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-02-24"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-03-03"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-03-09"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-03-10"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-03-17"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-03-23"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-03-24"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-03-30"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-04-07"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-04-08"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-04-14"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-04-20"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-04-21"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-04-27"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-05-04"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-05-05"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-05-12"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-05-18"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-05-19"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-05-27"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-06-01"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-06-02"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-06-09"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-06-15"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-06-16"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-06-23"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-06-29"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-06-30"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-07-07"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-07-13"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-07-14"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-07-21"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-07-27"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-07-28"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-08-04"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-08-10"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-08-11"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-08-18"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-08-24"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-08-25"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-09-01"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-09-07"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-09-08"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-09-15"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-09-21"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-09-22"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-09-29"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-10-05"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-10-06"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-10-13"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-10-19"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-10-20"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-10-27"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-11-02"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-11-03"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-11-10"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-11-16"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-11-17"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-11-24"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-11-30"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-12-01"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-12-08"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-12-14"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-12-15"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-12-21"
+      },
+      {
+        "title": "Gelbe Tonne",
+        "date": "2026-12-28"
+      },
+      {
+        "title": "Graue Tonne gewerblich",
+        "date": "2026-12-29"
+      }
+    ]
+  },
+  {
     "id": 6,
     "city": "Essen",
     "address": "Gerlingstr. 41, Essen",
@@ -8,7 +1672,7 @@
     ],
     "binDay": "Montag",
     "cleanDay": "",
-    "icsUrl": "https://api.abfall.io/?key=51be67f3758f1fb57b420efe065c0663&mode=export&idhousenumber=69956&wastetypes=66,177,42&timeperiod=20260101-20261231&showinactive=false&type=ics",
+    "icsUrl": "https://api.abfall.io/?key=51be67f3758f1fb57b420efe065c0663&mode=export&idhousenumber=69956&wastetypes=66,177&timeperiod=20260101-20261231&showinactive=false&type=ics",
     "calendarEvents": [
       {
         "title": "Graue Tonne",
@@ -29,10 +1693,6 @@
       {
         "title": "Graue Tonne",
         "date": "2026-01-22"
-      },
-      {
-        "title": "Weihnachtsbäume",
-        "date": "2026-01-23"
       },
       {
         "title": "Gelbe Tonne",
