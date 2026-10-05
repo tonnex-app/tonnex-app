@@ -13,7 +13,6 @@
             background-color: #030712;
         }
 
-        /* Ambient Background Orbs */
         .orb {
             position: fixed;
             border-radius: 50%;
@@ -21,29 +20,10 @@
             pointer-events: none;
             z-index: 0;
         }
-        .orb-1 {
-            top: -5%;
-            left: -10%;
-            width: 320px;
-            height: 320px;
-            background: rgba(16, 185, 129, 0.35);
-        }
-        .orb-2 {
-            top: 35%;
-            right: -15%;
-            width: 350px;
-            height: 350px;
-            background: rgba(59, 130, 246, 0.3);
-        }
-        .orb-3 {
-            bottom: -5%;
-            left: -5%;
-            width: 300px;
-            height: 300px;
-            background: rgba(139, 92, 246, 0.25);
-        }
+        .orb-1 { top: -5%; left: -10%; width: 320px; height: 320px; background: rgba(16, 185, 129, 0.35); }
+        .orb-2 { top: 35%; right: -15%; width: 350px; height: 350px; background: rgba(59, 130, 246, 0.3); }
+        .orb-3 { bottom: -5%; left: -5%; width: 300px; height: 300px; background: rgba(139, 92, 246, 0.25); }
 
-        /* Real Glassmorphism Styles */
         .glass-card {
             background: rgba(255, 255, 255, 0.05) !important;
             backdrop-filter: blur(24px) saturate(180%) !important;
@@ -76,7 +56,6 @@
 </head>
 <body class="min-h-screen text-slate-100 pb-16 relative overflow-x-hidden">
 
-    <!-- Glowing Background Atmosphere -->
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
@@ -114,28 +93,12 @@
             </div>
         </div>
 
-        <!-- Navigation Tabs -->
-        <div class="grid grid-cols-3 gap-2 p-1.5 glass-card rounded-2xl text-xs font-semibold">
-            <button onclick="switchTab('today')" id="tabToday" class="py-2.5 rounded-xl text-center active-tab transition-all duration-300">Heute</button>
-            <button onclick="switchTab('tomorrow')" id="tabTomorrow" class="py-2.5 rounded-xl text-center text-slate-300 hover:text-white transition-all duration-300">Morgen</button>
-            <button onclick="switchTab('all')" id="tabAll" class="py-2.5 rounded-xl text-center text-slate-300 hover:text-white transition-all duration-300">Alle Objekte</button>
-        </div>
-
-        <!-- Kalender Sync Box -->
-        <div class="glass-card p-4 rounded-3xl space-y-3">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <i class="fa-solid fa-cloud-arrow-down text-emerald-400 text-sm"></i>
-                    <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider">iCal / ICS Kalender Sync</h3>
-                </div>
-                <span class="text-[10px] font-bold bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded-full border border-emerald-500/30">Smart Auto</span>
-            </div>
-            <p class="text-xs text-slate-300 leading-relaxed">Sonderabholungen & Feiertagsverschiebungen der Städte (WBD, EBE, WBO) importieren.</p>
-            <label class="flex items-center justify-center space-x-2 w-full bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 py-3 rounded-2xl text-xs font-black cursor-pointer transition-all shadow-lg shadow-emerald-500/20 active:scale-95">
-                <i class="fa-solid fa-file-arrow-up"></i>
-                <span>.ics Kalenderdatei laden</span>
-                <input type="file" accept=".ics" class="hidden" onchange="importICS(event)">
-            </label>
+        <!-- Navigation Tabs (Jetzt mit 4 Tabs inklusive Vorschau & Sync) -->
+        <div class="grid grid-cols-4 gap-1.5 p-1.5 glass-card rounded-2xl text-[11px] font-semibold">
+            <button onclick="switchTab('today')" id="tabToday" class="py-2.5 rounded-xl text-center active-tab transition-all">Heute</button>
+            <button onclick="switchTab('tomorrow')" id="tabTomorrow" class="py-2.5 rounded-xl text-center text-slate-300 hover:text-white transition-all">Morgen</button>
+            <button onclick="switchTab('year')" id="tabYear" class="py-2.5 rounded-xl text-center text-slate-300 hover:text-white transition-all">Vorschau</button>
+            <button onclick="switchTab('sync')" id="tabSync" class="py-2.5 rounded-xl text-center text-slate-300 hover:text-white transition-all"><i class="fa-solid fa-cloud-arrow-down"></i></button>
         </div>
 
         <!-- Task List Container -->
@@ -146,77 +109,41 @@
     </main>
 
     <script>
-        const initialProperties = [
-            { id: 1, city: 'Duisburg', address: 'Turmstr. 36, 47119 Duisburg', tasks: ['Tonnen', 'Putzen'], binDay: 'Dienstag', cleanDay: 'Montag' },
-            { id: 2, city: 'Duisburg', address: 'Turmstr. 38, 47119 Duisburg', tasks: ['Tonnen', 'Putzen'], binDay: 'Dienstag', cleanDay: 'Montag' },
-            { id: 3, city: 'Duisburg', address: 'Krummenhakstr. 26, Duisburg', tasks: ['Tonnen', 'Putzen'], binDay: 'Mittwoch', cleanDay: 'Dienstag' },
-            { id: 4, city: 'Essen', address: 'Pferdemarkt 10, Essen', tasks: ['Tonnen'], binDay: 'Donnerstag', cleanDay: '' },
-            { id: 5, city: 'Essen', address: 'Kreuzeskirchstr. 8, Essen', tasks: ['Tonnen'], binDay: 'Freitag', cleanDay: '' },
-            { id: 6, city: 'Essen', address: 'Gerlingstr. 43, Essen', tasks: ['Tonnen'], binDay: 'Freitag', cleanDay: '' },
-            { id: 7, city: 'Oberhausen', address: 'Linsingenstr. 2, Oberhausen', tasks: ['Tonnen'], binDay: 'Dienstag', cleanDay: '' }
-        ];
+        let propertiesData = [];
 
         let state = JSON.parse(localStorage.getItem('tonnex_state')) || {
             completedTasks: {},
             timestamps: {},
-            photos: {},
-            icsEvents: []
+            photos: {}
         };
 
         const weekdays = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
         const todayIdx = new Date().getDay();
         const tomorrowIdx = (todayIdx + 1) % 7;
-
         let currentTab = 'today';
 
-        function initApp() {
+        async function initApp() {
             document.getElementById('currentDate').innerText = new Date().toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit' });
-            render();
-        }
-
-        function importICS(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const text = e.target.result;
-                const events = parseICS(text);
-                state.icsEvents = events;
-                saveState();
-                alert(`Erfolgreich ${events.length} Termine aus der .ics-Datei importiert!`);
-                render();
-            };
-            reader.readAsText(file);
-        }
-
-        function parseICS(icsData) {
-            const events = [];
-            const lines = icsData.split(/\r\n|\n|\r/);
-            let currentEvent = null;
-
-            lines.forEach(line => {
-                if (line.startsWith('BEGIN:VEVENT')) {
-                    currentEvent = {};
-                } else if (line.startsWith('END:VEVENT')) {
-                    if (currentEvent) events.push(currentEvent);
-                    currentEvent = null;
-                } else if (currentEvent) {
-                    if (line.startsWith('SUMMARY:')) currentEvent.summary = line.replace('SUMMARY:', '').trim();
-                    if (line.startsWith('DTSTART')) currentEvent.date = line.split(':')[1]?.substring(0, 8);
+            
+            try {
+                const res = await fetch('data.json');
+                if (res.ok) {
+                    propertiesData = await res.json();
                 }
-            });
-            return events;
+            } catch (e) {
+                console.error("Konnte data.json nicht laden:", e);
+            }
+            render();
         }
 
         function switchTab(tab) {
             currentTab = tab;
-            ['today', 'tomorrow', 'all'].forEach(t => {
+            ['today', 'tomorrow', 'year', 'sync'].forEach(t => {
                 const el = document.getElementById('tab' + t.charAt(0).toUpperCase() + t.slice(1));
                 if (t === tab) {
-                    el.className = "py-2.5 rounded-xl text-center active-tab transition-all duration-300 font-bold";
+                    el.className = "py-2.5 rounded-xl text-center active-tab transition-all font-bold";
                 } else {
-                    el.className = "py-2.5 rounded-xl text-center text-slate-300 hover:text-white transition-all duration-300";
+                    el.className = "py-2.5 rounded-xl text-center text-slate-300 hover:text-white transition-all";
                 }
             });
             render();
@@ -262,31 +189,80 @@
             let totalCount = 0;
             let doneCount = 0;
 
-            initialProperties.forEach(prop => {
+            if (currentTab === 'sync') {
+                container.innerHTML = `
+                    <div class="glass-card p-5 rounded-3xl space-y-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-cloud-arrow-down text-emerald-400 text-base"></i>
+                            <h3 class="text-sm font-bold text-slate-200 uppercase tracking-wider">iCal / ICS Kalender Sync</h3>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">Die Abfalltermine für alle Städte (WBD, EBE, WBO) werden vollautomatisch über GitHub Actions direkt von den API-Endpunkten synchronisiert.</p>
+                        <div class="p-3 rounded-2xl glass-inner flex items-center justify-between text-xs text-emerald-400">
+                            <span><i class="fa-solid fa-circle-check mr-1.5"></i> Status: Live-API aktiv</span>
+                            <span class="text-slate-400">${propertiesData.length} Objekte</span>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('progressBar').style.width = '100%';
+                document.getElementById('progressPercent').innerText = '100%';
+                return;
+            }
+
+            if (currentTab === 'year') {
+                // Vorschau-Ansicht aller Termine bis Jahresende
+                propertiesData.forEach(prop => {
+                    const card = document.createElement('div');
+                    card.className = "glass-card p-4 rounded-3xl space-y-3";
+                    
+                    let eventsList = (prop.calendarEvents || []).map(ev => `
+                        <div class="flex justify-between items-center text-xs py-1.5 border-b border-white/5">
+                            <span class="text-slate-200 font-medium"><i class="fa-solid fa-calendar-day text-emerald-400 mr-2"></i>${ev.title}</span>
+                            <span class="text-emerald-300 font-mono">${ev.date}</span>
+                        </div>
+                    `).join('');
+
+                    if (!eventsList) eventsList = `<p class="text-xs text-slate-400 italic">Keine Termine gefunden.</p>`;
+
+                    card.innerHTML = `
+                        <h3 class="font-bold text-white text-sm">${prop.address}</h3>
+                        <div class="max-h-60 overflow-y-auto space-y-1 pr-1 custom-scroll">
+                            ${eventsList}
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+                document.getElementById('progressBar').style.width = '100%';
+                document.getElementById('progressPercent').innerText = '100%';
+                return;
+            }
+
+            // Heute & Morgen Logik
+            propertiesData.forEach(prop => {
+                const todayStr = new Date().toISOString().slice(0, 10);
+                const tomorrowDate = new Date();
+                tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+                const tomorrowStr = tomorrowDate.toISOString().slice(0, 10);
+
+                const targetDateStr = currentTab === 'today' ? todayStr : tomorrowStr;
+
+                // Prüfen ob API einen Termin an diesem Tag liefert
+                const hasApiEventToday = (prop.calendarEvents || []).some(ev => ev.date === targetDateStr);
+                
                 const todayName = weekdays[todayIdx];
                 const tomorrowName = weekdays[tomorrowIdx];
+                const isBinDayMatch = currentTab === 'today' ? prop.binDay === tomorrowName : prop.binDay === weekdays[(tomorrowIdx + 1) % 7];
+                const isCleanDayMatch = currentTab === 'today' ? prop.cleanDay === todayName : prop.cleanDay === tomorrowName;
 
-                const isBinToday = prop.binDay === tomorrowName; 
-                const isCleanToday = prop.cleanDay === todayName;
-
-                const isBinTomorrow = prop.binDay === weekdays[(tomorrowIdx + 1) % 7];
-                const isCleanTomorrow = prop.cleanDay === tomorrowName;
-
-                let show = false;
-                if (currentTab === 'today' && (isBinToday || isCleanToday)) show = true;
-                if (currentTab === 'tomorrow' && (isBinTomorrow || isCleanTomorrow)) show = true;
-                if (currentTab === 'all') show = true;
-
-                if (show) {
-                    const dateKey = new Date().toISOString().slice(0, 10);
+                if (hasApiEventToday || isBinDayMatch || isCleanDayMatch) {
+                    const dateKey = targetDateStr;
                     const binDoneKey = `${prop.id}_bin_${dateKey}`;
                     const cleanDoneKey = `${prop.id}_clean_${dateKey}`;
 
                     const isBinDone = !!state.completedTasks[binDoneKey];
                     const isCleanDone = !!state.completedTasks[cleanDoneKey];
 
-                    if (isBinToday) { totalCount++; if (isBinDone) doneCount++; }
-                    if (isCleanToday) { totalCount++; if (isCleanDone) doneCount++; }
+                    if (prop.tasks.includes('Tonnen')) { totalCount++; if (isBinDone) doneCount++; }
+                    if (prop.tasks.includes('Putzen')) { totalCount++; if (isCleanDone) doneCount++; }
 
                     const cityBadgeColor = prop.city === 'Duisburg' ? 'bg-blue-500/20 text-blue-300 border-blue-400/30' : 
                                            prop.city === 'Essen' ? 'bg-emerald-500/20 text-emerald-300 border-emerald-400/30' : 
@@ -296,7 +272,6 @@
                     card.className = "glass-card p-4 rounded-3xl space-y-3";
 
                     let tasksHtml = '';
-
                     if (prop.tasks.includes('Tonnen')) {
                         tasksHtml += `
                             <div class="flex items-center justify-between p-3 rounded-2xl glass-inner">
@@ -306,7 +281,7 @@
                                     </div>
                                     <div>
                                         <div class="text-xs font-bold text-white">Tonnendienst</div>
-                                        <div class="text-[11px] text-slate-300">${prop.binDay ? 'Abholung: ' + prop.binDay : 'Keine Abholung'}</div>
+                                        <div class="text-[11px] text-slate-300">Abholung geplant</div>
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-2">
@@ -319,7 +294,6 @@
                                     </button>
                                 </div>
                             </div>
-                            ${state.photos[binDoneKey] ? `<div class="mt-2"><img src="${state.photos[binDoneKey]}" class="w-full h-32 object-cover rounded-2xl border border-white/20 shadow-md"></div>` : ''}
                         `;
                     }
 
@@ -332,7 +306,7 @@
                                     </div>
                                     <div>
                                         <div class="text-xs font-bold text-white">Treppenhaus Putzen</div>
-                                        <div class="text-[11px] text-slate-300">${prop.cleanDay ? 'Putztag: ' + prop.cleanDay : 'Nach Bedarf'}</div>
+                                        <div class="text-[11px] text-slate-300">Putztag</div>
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-2">
@@ -345,7 +319,6 @@
                                     </button>
                                 </div>
                             </div>
-                            ${state.photos[cleanDoneKey] ? `<div class="mt-2"><img src="${state.photos[cleanDoneKey]}" class="w-full h-32 object-cover rounded-2xl border border-white/20 shadow-md"></div>` : ''}
                         `;
                     }
 
@@ -356,9 +329,7 @@
                                 <h3 class="font-bold text-white text-sm mt-1.5">${prop.address}</h3>
                             </div>
                         </div>
-                        <div class="space-y-2 pt-1">
-                            ${tasksHtml}
-                        </div>
+                        <div class="space-y-2 pt-1">${tasksHtml}</div>
                     `;
                     container.appendChild(card);
                 }
