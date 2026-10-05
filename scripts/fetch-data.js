@@ -1,6 +1,5 @@
 const fs = require('fs');
 const ical = require('node-ical');
-const fetch = require('node-fetch');
 
 const currentYear = new Date().getFullYear();
 
@@ -83,28 +82,30 @@ async function fetchAndParseData() {
         try {
             console.log(`Lade Kalender für: ${prop.address}`);
             
+            // fetch mit automatischem Folgen von Weiterleitungen und Browser-Header
             const response = await fetch(prop.icsUrl, {
                 method: 'GET',
+                redirect: 'follow',
                 headers: {
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-                    'Accept': 'text/calendar, text/plain, */*',
-                    'Accept-Language': 'de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7'
+                    'Accept': 'text/calendar, text/plain, */*'
                 }
             });
 
             if (!response.ok) {
-                throw new Error(`HTTP-Fehler ${response.status} (${response.statusText})`);
+                throw new Error(`HTTP ${response.status} - ${response.statusText}`);
             }
 
             const icsText = await response.text();
-            console.log(`  -> Empfangen: ${icsText.length} Zeichen`);
-
+            
+            // ICS-Text mit node-ical parsen
             const events = ical.sync.parseICS(icsText);
             const upcomingEvents = [];
-            
+
             for (const key in events) {
                 const event = events[key];
                 if (event.type === 'VEVENT') {
+                    // Titel extrahieren
                     let summaryText = '';
                     if (typeof event.summary === 'string') {
                         summaryText = event.summary;
@@ -114,14 +115,25 @@ async function fetchAndParseData() {
                         summaryText = 'Abfalltermin';
                     }
 
-                    upcomingEvents.push({
-                        title: summaryText,
-                        date: event.start ? new Date(event.start).toISOString().split('T')[0] : ''
-                    });
+                    // Datum extrahieren
+                    let eventDate = '';
+                    if (event.start) {
+                        const dateObj = new Date(event.start);
+                        if (!isNaN(dateObj.getTime())) {
+                            eventDate = dateObj.toISOString().split('T')[0];
+                        }
+                    }
+
+                    if (eventDate) {
+                        upcomingEvents.push({
+                            title: summaryText,
+                            date: eventDate
+                        });
+                    }
                 }
             }
 
-            console.log(`  -> Termine gefunden: ${upcomingEvents.length}`);
+            console.log(`  -> ${upcomingEvents.length} Termine gefunden.`);
 
             outputData.push({
                 ...prop,
@@ -129,7 +141,7 @@ async function fetchAndParseData() {
             });
 
         } catch (error) {
-            console.error(`Fehler bei ${prop.address}:`, error.message);
+            console.error(`  -> Fehler bei ${prop.address}: ${error.message}`);
             outputData.push({
                 ...prop,
                 calendarEvents: []
