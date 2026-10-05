@@ -1,7 +1,7 @@
 const fs = require('fs');
 const ical = require('node-ical');
+const fetch = require('node-fetch'); // Stellen Sie sicher, dass node-fetch installiert ist
 
-// Dynamisches Jahr für Links wie Oberhausen
 const currentYear = new Date().getFullYear();
 
 const properties = [
@@ -83,19 +83,27 @@ async function fetchAndParseData() {
         try {
             console.log(`Lade Kalender für: ${prop.address}`);
             
-            // Mit Browser-User-Agent anfragen, damit AbfallPlus die Anfrage nicht blockiert
-            const events = await ical.async.fromURL(prop.icsUrl, {
+            // Abrufen des ICS-Inhalts als Text
+            const response = await fetch(prop.icsUrl, {
                 headers: {
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                    'Accept': 'text/calendar, text/plain, */*'
                 }
             });
+
+            if (!response.ok) {
+                throw new Error(`HTTP-Fehler ${response.status}`);
+            }
+
+            const icsData = await response.text();
             
+            // Parsen des String-Inhalts mit node-ical
+            const events = ical.sync.parseICS(icsData);
             const upcomingEvents = [];
             
             for (const key in events) {
                 const event = events[key];
                 if (event.type === 'VEVENT') {
-                    // Titel sauber extrahieren (egal ob String oder Objekt)
                     let summaryText = '';
                     if (typeof event.summary === 'string') {
                         summaryText = event.summary;
