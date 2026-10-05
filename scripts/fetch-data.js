@@ -1,176 +1,89 @@
 const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
+const puppeteer = require('puppeteer');
 const ical = require('node-ical');
 
 const currentYear = new Date().getFullYear();
 
 const properties = [
     // --- DUISBURG ---
-    { 
-        id: 1, 
-        city: 'Duisburg', 
-        address: 'Turmstr. 36, 47119 Duisburg', 
-        tasks: ['Tonnen', 'Putzen'], 
-        binDay: 'Dienstag', 
-        cleanDay: 'Montag', 
-        icsUrl: 'https://ical.abfallplus.de/?icsdownload=4546-8c166460ba61e3d580099b718649f4b5.ics&c=1&d=0' 
-    },
-    { 
-        id: 2, 
-        city: 'Duisburg', 
-        address: 'Turmstr. 38, 47119 Duisburg', 
-        tasks: ['Tonnen'], 
-        binDay: 'Dienstag', 
-        cleanDay: '', 
-        icsUrl: 'https://ical.abfallplus.de/?icsdownload=4546-7e14ab1c4f86434d9b8226e46c18daeb.ics&c=1&d=0' 
-    },
-    { 
-        id: 3, 
-        city: 'Duisburg', 
-        address: 'Krummenhakstr. 36, Duisburg', 
-        tasks: ['Tonnen', 'Putzen'], 
-        binDay: 'Mittwoch', 
-        cleanDay: 'Dienstag', 
-        icsUrl: 'https://ical.abfallplus.de/?icsdownload=4546-e00afeba1db151d0f5198900451ef641.ics&c=1&d=0' 
-    },
+    { id: 1, city: 'Duisburg', address: 'Turmstr. 36, 47119 Duisburg', tasks: ['Tonnen', 'Putzen'], binDay: 'Dienstag', cleanDay: 'Montag', icsUrl: 'https://ical.abfallplus.de/?icsdownload=4546-8c166460ba61e3d580099b718649f4b5.ics&c=1&d=0' },
+    { id: 2, city: 'Duisburg', address: 'Turmstr. 38, 47119 Duisburg', tasks: ['Tonnen'], binDay: 'Dienstag', cleanDay: '', icsUrl: 'https://ical.abfallplus.de/?icsdownload=4546-7e14ab1c4f86434d9b8226e46c18daeb.ics&c=1&d=0' },
+    { id: 3, city: 'Duisburg', address: 'Krummenhakstr. 36, Duisburg', tasks: ['Tonnen', 'Putzen'], binDay: 'Mittwoch', cleanDay: 'Dienstag', icsUrl: 'https://ical.abfallplus.de/?icsdownload=4546-e00afeba1db151d0f5198900451ef641.ics&c=1&d=0' },
 
     // --- ESSEN ---
-    { 
-        id: 4, 
-        city: 'Essen', 
-        address: 'Pferdemarkt 10, Essen', 
-        tasks: ['Tonnen'], 
-        binDay: 'Donnerstag', 
-        cleanDay: '', 
-        icsUrl: 'https://ical.abfallplus.de/?icsdownload=5843-1609b31c11151d4f18ff6cef7f014a6e.ics&c=1&d=0' 
-    },
-    { 
-        id: 5, 
-        city: 'Essen', 
-        address: 'Kreuzeskirchstr. 8, Essen', 
-        tasks: ['Tonnen', 'Putzen'], 
-        binDay: 'Freitag', 
-        cleanDay: 'Donnerstag', 
-        icsUrl: 'https://ical.abfallplus.de/?icsdownload=5843-ee8ea8013be00d2ba8750dd890b0369d.ics&c=1&d=0' 
-    },
-    { 
-        id: 6, 
-        city: 'Essen', 
-        address: 'Gerlingstr. 41, Essen', 
-        tasks: ['Tonnen'], 
-        binDay: 'Montag', 
-        cleanDay: '', 
-        icsUrl: 'https://ical.abfallplus.de/?icsdownload=5843-d69c567e5165d5b703d869a79c9b1f44.ics&c=1&d=0' 
-    },
+    { id: 4, city: 'Essen', address: 'Pferdemarkt 10, Essen', tasks: ['Tonnen'], binDay: 'Donnerstag', cleanDay: '', icsUrl: 'https://ical.abfallplus.de/?icsdownload=5843-1609b31c11151d4f18ff6cef7f014a6e.ics&c=1&d=0' },
+    { id: 5, city: 'Essen', address: 'Kreuzeskirchstr. 8, Essen', tasks: ['Tonnen', 'Putzen'], binDay: 'Freitag', cleanDay: 'Donnerstag', icsUrl: 'https://ical.abfallplus.de/?icsdownload=5843-ee8ea8013be00d2ba8750dd890b0369d.ics&c=1&d=0' },
+    { id: 6, city: 'Essen', address: 'Gerlingstr. 41, Essen', tasks: ['Tonnen'], binDay: 'Montag', cleanDay: '', icsUrl: 'https://ical.abfallplus.de/?icsdownload=5843-d69c567e5165d5b703d869a79c9b1f44.ics&c=1&d=0' },
 
     // --- OBERHAUSEN ---
-    { 
-        id: 7, 
-        city: 'Oberhausen', 
-        address: 'Linsingenstr. 2, Oberhausen', 
-        tasks: ['Tonnen', 'Putzen'], 
-        binDay: 'Freitag', 
-        cleanDay: 'Mittwoch', 
-        icsUrl: `https://abfallkalender.regioit.de/kalender-oberhausen/downloadfile.jsp?format=ics&jahr=${currentYear}&ort=Oberhausen&strStatic=T2JlcmhhdXNlbmRlZmF1bHRMaW5zaW5nZW5zdHJh32U%3D&hnrStatic=T2JlcmhhdXNlbjQ2MDQ1TGluc2luZ2Vuc3RyYd9lMg%3D%3D&zeit=-%3A00%3A00&fraktion=0&fraktion=5&fraktion=6&fraktion=7&fraktion=10&fraktion=11` 
-    }
+    { id: 7, city: 'Oberhausen', address: 'Linsingenstr. 2, Oberhausen', tasks: ['Tonnen', 'Putzen'], binDay: 'Freitag', cleanDay: 'Mittwoch', icsUrl: `https://abfallkalender.regioit.de/kalender-oberhausen/downloadfile.jsp?format=ics&jahr=${currentYear}&ort=Oberhausen&strStatic=T2JlcmhhdXNlbmRlZmF1bHRMaW5zaW5nZW5zdHJh32U%3D&hnrStatic=T2JlcmhhdXNlbjQ2MDQ1TGluc2luZ2Vuc3RyYd9lMg%3D%3D&zeit=-%3A00%3A00&fraktion=0&fraktion=5&fraktion=6&fraktion=7&fraktion=10&fraktion=11` }
 ];
 
-function downloadIcsWithCurl(url) {
+async function fetchWithBrowser(browser, url) {
     try {
-        const cookieFile = path.join(__dirname, 'cookies.txt');
-        const userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36";
+        const page = await browser.newPage();
+        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36');
         
-        // 1. Handshake zur Cookie-Generierung
-        const baseUrl = new URL(url).origin;
-        execSync(`curl -s -c "${cookieFile}" -A "${userAgent}" "${baseUrl}" > /dev.null || true`);
-
-        // 2. Eigentlicher Download mit Weiterleitungen und Session-Cookie
-        const cmd = `curl -sL -b "${cookieFile}" -A "${userAgent}" -H "Accept: text/calendar, text/plain, */*" -H "Accept-Language: de-DE,de;q=0.9" "${url}"`;
-        const result = execSync(cmd, { encoding: 'utf-8', timeout: 15000 });
-
-        if (fs.existsSync(cookieFile)) {
-            fs.unlinkSync(cookieFile);
-        }
-
-        return result;
-    } catch (err) {
-        console.error(`Curl Download fehlgeschlagen: ${err.message}`);
+        const response = await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
+        const content = await response.text();
+        await page.close();
+        
+        return content.includes('BEGIN:VCALENDAR') ? content : null;
+    } catch (e) {
+        console.error(`Browser-Download fehlgeschlagen: ${e.message}`);
         return null;
     }
 }
 
 async function fetchAndParseData() {
-    console.log("Starte Abruf der Abfallkalender...");
+    console.log("Starte Abruf mit Puppeteer...");
+    const browser = await puppeteer.launch({
+        headless: 'new',
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+
     const outputData = [];
 
     for (const prop of properties) {
-        try {
-            console.log(`Lade Kalender für: ${prop.address}`);
-            
-            let rawData = downloadIcsWithCurl(prop.icsUrl);
+        console.log(`Lade Daten für: ${prop.address}`);
+        
+        // Bei AbfallPlus den Feed-Link verwenden
+        let targetUrl = prop.icsUrl;
+        if (targetUrl.includes('abfallplus.de') && targetUrl.includes('?icsdownload=')) {
+            targetUrl = targetUrl.replace('?icsdownload=', '?ics=');
+        }
 
-            // Lokaler Fallback, falls der Online-Abruf blockiert wurde
-            if (!rawData || !rawData.includes('BEGIN:VCALENDAR')) {
-                const fallbackPath = path.join(__dirname, '..', 'calendars', `property_${prop.id}.ics`);
-                if (fs.existsSync(fallbackPath)) {
-                    console.log(`  -> Online-Abruf blockiert, nutze lokalen Fallback: ${fallbackPath}`);
-                    rawData = fs.readFileSync(fallbackPath, 'utf-8');
-                } else {
-                    console.warn(`  -> Keine Daten erhalten und kein Fallback vorhanden.`);
-                    outputData.push({ ...prop, calendarEvents: [] });
-                    continue;
-                }
-            }
+        const rawData = await fetchWithBrowser(browser, targetUrl);
+        const upcomingEvents = [];
 
+        if (rawData) {
             const events = ical.sync.parseICS(rawData);
-            const upcomingEvents = [];
-
             for (const key in events) {
                 const event = events[key];
                 if (event.type === 'VEVENT') {
-                    let summaryText = '';
-                    if (typeof event.summary === 'string') {
-                        summaryText = event.summary;
-                    } else if (event.summary && event.summary.val) {
-                        summaryText = event.summary.val;
-                    } else {
-                        summaryText = 'Abfalltermin';
-                    }
-
-                    let eventDate = '';
-                    if (event.start) {
-                        const d = new Date(event.start);
-                        if (!isNaN(d.getTime())) {
-                            eventDate = d.toISOString().split('T')[0];
-                        }
-                    }
-
-                    if (eventDate) {
-                        upcomingEvents.push({
-                            title: summaryText,
-                            date: eventDate
-                        });
-                    }
+                    let summaryText = typeof event.summary === 'string' ? event.summary : (event.summary?.val || 'Abfalltermin');
+                    let eventDate = event.start ? new Date(event.start).toISOString().split('T')[0] : '';
+                    if (eventDate) upcomingEvents.push({ title: summaryText, date: eventDate });
                 }
             }
-
             console.log(`  -> Extrahiert: ${upcomingEvents.length} Termine.`);
-
-            outputData.push({
-                ...prop,
-                calendarEvents: upcomingEvents
-            });
-
-        } catch (error) {
-            console.error(`Fehler bei ${prop.address}:`, error.message);
-            outputData.push({
-                ...prop,
-                calendarEvents: []
-            });
+        } else {
+            console.warn(`  -> Keine Termine empfangen.`);
         }
+
+        outputData.push({
+            id: prop.id,
+            city: prop.city,
+            address: prop.address,
+            tasks: prop.tasks,
+            binDay: prop.binDay,
+            cleanDay: prop.cleanDay,
+            icsUrl: prop.icsUrl,
+            calendarEvents: upcomingEvents
+        });
     }
 
+    await browser.close();
     fs.writeFileSync('data.json', JSON.stringify(outputData, null, 2));
     console.log("data.json erfolgreich generiert!");
 }
