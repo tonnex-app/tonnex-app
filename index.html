@@ -72,7 +72,12 @@
                     <p class="text-[10px] text-emerald-400 font-bold tracking-widest uppercase mt-0.5">Facility Operating System</p>
                 </div>
             </div>
-            <span id="currentDate" class="text-xs font-semibold glass-inner px-3 py-1.5 rounded-full text-slate-200 shadow-inner"></span>
+            <div class="flex items-center space-x-2">
+                <span id="currentDate" class="text-xs font-semibold glass-inner px-3 py-1.5 rounded-full text-slate-200 shadow-inner"></span>
+                <button onclick="toggleAdminModal()" class="glass-inner px-3 py-1.5 rounded-full text-slate-200 hover:text-emerald-400 transition-all text-xs shadow-inner" title="Admin-Menü">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -108,6 +113,41 @@
 
     </main>
 
+    <!-- Admin Modal / Dropdown -->
+    <div id="adminModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="glass-card max-w-md w-full p-6 rounded-3xl space-y-4 relative border border-white/20 shadow-2xl">
+            <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+                    <h3 class="font-bold text-white text-sm uppercase tracking-wider">Admin-Steuerung</h3>
+                </div>
+                <button onclick="toggleAdminModal()" class="text-slate-400 hover:text-white text-sm">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-2">
+                <p class="text-xs text-slate-300">Hier kannst du versehentlich als „Erledigt“ markierte Aufgaben zurücksetzen oder den Cache leeren.</p>
+            </div>
+
+            <div class="space-y-2">
+                <h4 class="text-xs font-bold text-slate-200 uppercase">Aktive / Erledigte Tasks im Speicher:</h4>
+                <div id="adminTaskList" class="max-h-48 overflow-y-auto space-y-2 pr-1 custom-scroll text-xs">
+                    <!-- Wird per JS gefüllt -->
+                </div>
+            </div>
+
+            <div class="pt-2 border-t border-white/10 flex justify-between items-center">
+                <button onclick="resetAllData()" class="px-3 py-2 rounded-xl bg-red-500/20 text-red-300 border border-red-500/30 text-xs font-bold hover:bg-red-500/30 transition-all">
+                    <i class="fa-solid fa-trash mr-1.5"></i> Alles zurücksetzen
+                </button>
+                <button onclick="toggleAdminModal()" class="px-4 py-2 rounded-xl bg-emerald-500 text-slate-950 text-xs font-black shadow-lg shadow-emerald-500/30">
+                    Schließen
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         let propertiesData = [];
 
@@ -119,6 +159,14 @@
 
         const weekdays = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
         let currentTab = 'today';
+
+        function getCalendarWeek(date) {
+            const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+            const dayNum = d.getUTCDay() || 7;
+            d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+            const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+            return `${d.getUTCFullYear()}-W${Math.ceil((((d - yearStart) / 86400000) + 1) / 7)}`;
+        }
 
         async function initApp() {
             document.getElementById('currentDate').innerText = new Date().toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit' });
@@ -148,8 +196,16 @@
         }
 
         function toggleTask(id, type) {
-            const dateKey = new Date().toISOString().slice(0, 10);
-            const key = `${id}_${type}_${dateKey}`;
+            const today = new Date();
+            let key;
+            if (type === 'bin') {
+                const dateKey = today.toISOString().slice(0, 10);
+                key = `${id}_bin_${dateKey}`;
+            } else {
+                const weekKey = getCalendarWeek(today);
+                key = `${id}_clean_${weekKey}`;
+            }
+
             if (state.completedTasks[key]) {
                 delete state.completedTasks[key];
                 delete state.timestamps[key];
@@ -161,13 +217,80 @@
             render();
         }
 
+        // Admin-Funktionen
+        function toggleAdminModal() {
+            const modal = document.getElementById('adminModal');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                renderAdminTaskList();
+            } else {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }
+        }
+
+        function renderAdminTaskList() {
+            const container = document.getElementById('adminTaskList');
+            container.innerHTML = '';
+
+            const keys = Object.keys(state.completedTasks);
+            if (keys.length === 0) {
+                container.innerHTML = `<p class="text-slate-400 italic">Keine Aufgaben im Speicher als erledigt markiert.</p>`;
+                return;
+            }
+
+            keys.forEach(key => {
+                // Key format z.B. "1_bin_2026-06-06" oder "3_clean_2026-W23"
+                const parts = key.split('_');
+                const propId = parts[0];
+                const taskType = parts[1];
+                const timeInfo = parts.slice(2).join('_');
+
+                const prop = propertiesData.find(p => p.id == propId);
+                const addressText = prop ? prop.address : `Objekt-ID ${propId}`;
+                const typeText = taskType === 'bin' ? 'Mülltonne' : 'Putzen';
+
+                const item = document.createElement('div');
+                item.className = "glass-inner p-2.5 rounded-xl flex items-center justify-between";
+                item.innerHTML = `
+                    <div>
+                        <div class="font-bold text-white">${addressText}</div>
+                        <div class="text-[10px] text-slate-300">${typeText} (${timeInfo})</div>
+                    </div>
+                    <button onclick="adminUndoTask('${key}')" class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[11px] font-bold hover:bg-amber-500/30 transition-all">
+                        Rückgängig
+                    </button>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function adminUndoTask(key) {
+            delete state.completedTasks[key];
+            delete state.timestamps[key];
+            saveState();
+            renderAdminTaskList();
+            render();
+        }
+
+        function resetAllData() {
+            if (confirm("Möchtest du wirklich alle gespeicherten Erledigt-Status zurücksetzen?")) {
+                state = { completedTasks: {}, timestamps: {}, photos: {} };
+                saveState();
+                renderAdminTaskList();
+                render();
+                toggleAdminModal();
+            }
+        }
+
         function handlePhotoUpload(event, id, type) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const dateKey = new Date().toISOString().slice(0, 10);
-                    const key = `${id}_${type}_${dateKey}`;
+                    const today = new Date();
+                    const key = type === 'bin' ? `${id}_bin_${today.toISOString().slice(0, 10)}` : `${id}_clean_${getCalendarWeek(today)}`;
                     state.photos[key] = e.target.result;
                     saveState();
                     render();
@@ -194,7 +317,7 @@
                             <i class="fa-solid fa-cloud-arrow-down text-emerald-400 text-base"></i>
                             <h3 class="text-sm font-bold text-slate-200 uppercase tracking-wider">iCal / ICS Kalender Sync</h3>
                         </div>
-                        <p class="text-xs text-slate-300 leading-relaxed">Die Abfalltermine für alle Städte (WBD, EBE, WBO) werden vollautomatisch über GitHub Actions direkt von den API-Endpunkten synchronisiert.</p>
+                        <p class="text-xs text-slate-300 leading-relaxed">Die Abfalltermine für alle Städte werden vollautomatisch über GitHub Actions direkt von den API-Endpunkten synchronisiert.</p>
                         <div class="p-3 rounded-2xl glass-inner flex items-center justify-between text-xs text-emerald-400">
                             <span><i class="fa-solid fa-circle-check mr-1.5"></i> Status: Live-API aktiv</span>
                             <span class="text-slate-400">${propertiesData.length} Objekte</span>
@@ -233,9 +356,9 @@
                 return;
             }
 
-            // Datumsberechnung für intelligente Müll-Vorschau (Morgen & Übermorgen prüfen)
             const todayDateObj = new Date();
             const todayStr = todayDateObj.toISOString().slice(0, 10);
+            const currentWeekKey = getCalendarWeek(todayDateObj);
             
             const tomorrowDateObj = new Date();
             tomorrowDateObj.setDate(tomorrowDateObj.getDate() + 1);
@@ -245,7 +368,6 @@
             dayAfterTomorrowDateObj.setDate(dayAfterTomorrowDateObj.getDate() + 2);
             const dayAfterTomorrowStr = dayAfterTomorrowDateObj.toISOString().slice(0, 10);
 
-            // Tab "Heute" schaut nach Terminen für morgen + übermorgen (damit man zusammen rausstellt)
             const trashTargetDates = currentTab === 'today' ? [tomorrowStr, dayAfterTomorrowStr] : [dayAfterTomorrowStr];
             
             const cleanTargetDateObj = currentTab === 'today' ? todayDateObj : tomorrowDateObj;
@@ -253,25 +375,23 @@
             const cleanTargetWeekdayName = weekdays[cleanTargetDateObj.getDay()];
 
             propertiesData.forEach(prop => {
-                // 1. Müll-Prüfung über die echten API-Termine im Zeitfenster
                 const matchingBinEvents = (prop.calendarEvents || []).filter(ev => trashTargetDates.includes(ev.date));
                 const needsBin = matchingBinEvents.length > 0;
 
-                // 2. Putz-Prüfung
                 const hasApiCleanEvent = (prop.calendarEvents || []).some(ev => ev.date === cleanTargetStr);
                 const isCleanMatch = prop.cleanDay === cleanTargetWeekdayName;
-                const needsClean = hasApiCleanEvent || isCleanMatch;
+                const needsClean = (hasApiCleanEvent || isCleanMatch);
 
-                if (needsBin || needsClean) {
-                    const dateKey = currentTab === 'today' ? todayStr : tomorrowStr;
-                    const binDoneKey = `${prop.id}_bin_${dateKey}`;
-                    const cleanDoneKey = `${prop.id}_clean_${dateKey}`;
+                const cleanDoneKey = `${prop.id}_clean_${currentWeekKey}`;
+                const isCleanDone = !!state.completedTasks[cleanDoneKey];
+                const showClean = needsClean && !isCleanDone;
 
+                if (needsBin || showClean) {
+                    const binDoneKey = `${prop.id}_bin_${todayStr}`;
                     const isBinDone = !!state.completedTasks[binDoneKey];
-                    const isCleanDone = !!state.completedTasks[cleanDoneKey];
 
                     if (needsBin && prop.tasks.includes('Tonnen')) { totalCount++; if (isBinDone) doneCount++; }
-                    if (needsClean && prop.tasks.includes('Putzen')) { totalCount++; if (isCleanDone) doneCount++; }
+                    if (showClean && prop.tasks.includes('Putzen')) { totalCount++; if (isCleanDone) doneCount++; }
 
                     const cityBadgeColor = prop.city === 'Duisburg' ? 'bg-blue-500/20 text-blue-300 border-blue-400/30' : 
                                            prop.city === 'Essen' ? 'bg-emerald-500/20 text-emerald-300 border-emerald-400/30' : 
@@ -282,7 +402,6 @@
 
                     let tasksHtml = '';
                     if (needsBin && prop.tasks.includes('Tonnen')) {
-                        // Alle gefundenen Tonnennamen (z.B. "Gelbe Tonne & Papiertonne") zusammenfassen
                         const binTitles = [...new Set(matchingBinEvents.map(e => e.title))].join(' & ');
 
                         tasksHtml += `
@@ -309,7 +428,7 @@
                         `;
                     }
 
-                    if (needsClean && prop.tasks.includes('Putzen')) {
+                    if (showClean && prop.tasks.includes('Putzen')) {
                         tasksHtml += `
                             <div class="flex items-center justify-between p-3 rounded-2xl glass-inner">
                                 <div class="flex items-center space-x-3">
@@ -318,7 +437,7 @@
                                     </div>
                                     <div>
                                         <div class="text-xs font-bold text-white">Treppenhaus Putzen</div>
-                                        <div class="text-[11px] text-slate-300">Putztag</div>
+                                        <div class="text-[11px] text-slate-300">Wöchentlicher Putztag</div>
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-2">
