@@ -233,7 +233,7 @@
                 return;
             }
 
-            // Datumsberechnung (Müll wird am Vortag benötigt)
+            // Datumsberechnung für intelligente Müll-Vorschau (Morgen & Übermorgen prüfen)
             const todayDateObj = new Date();
             const todayStr = todayDateObj.toISOString().slice(0, 10);
             
@@ -245,24 +245,19 @@
             dayAfterTomorrowDateObj.setDate(dayAfterTomorrowDateObj.getDate() + 2);
             const dayAfterTomorrowStr = dayAfterTomorrowDateObj.toISOString().slice(0, 10);
 
-            // Tab "Heute" zeigt Müll für morgen (Rausstellen heute)
-            // Tab "Morgen" zeigt Müll für übermorgen (Rausstellen morgen)
-            const trashTargetDateStr = currentTab === 'today' ? tomorrowStr : dayAfterTomorrowStr;
-            const trashTargetObj = currentTab === 'today' ? tomorrowDateObj : dayAfterTomorrowDateObj;
-            const trashTargetWeekdayName = weekdays[trashTargetObj.getDay()];
-
-            // Putzen gilt am jeweiligen Tag selbst
+            // Tab "Heute" schaut nach Terminen für morgen + übermorgen (damit man zusammen rausstellt)
+            const trashTargetDates = currentTab === 'today' ? [tomorrowStr, dayAfterTomorrowStr] : [dayAfterTomorrowStr];
+            
             const cleanTargetDateObj = currentTab === 'today' ? todayDateObj : tomorrowDateObj;
             const cleanTargetStr = currentTab === 'today' ? todayStr : tomorrowStr;
             const cleanTargetWeekdayName = weekdays[cleanTargetDateObj.getDay()];
 
             propertiesData.forEach(prop => {
-                // 1. Müll-Prüfung (Vortag-Logik)
-                const hasApiBinEvent = (prop.calendarEvents || []).some(ev => ev.date === trashTargetDateStr);
-                const isBinMatch = prop.binDay === trashTargetWeekdayName;
-                const needsBin = hasApiBinEvent || isBinMatch;
+                // 1. Müll-Prüfung über die echten API-Termine im Zeitfenster
+                const matchingBinEvents = (prop.calendarEvents || []).filter(ev => trashTargetDates.includes(ev.date));
+                const needsBin = matchingBinEvents.length > 0;
 
-                // 2. Putz-Prüfung (Echter Tag)
+                // 2. Putz-Prüfung
                 const hasApiCleanEvent = (prop.calendarEvents || []).some(ev => ev.date === cleanTargetStr);
                 const isCleanMatch = prop.cleanDay === cleanTargetWeekdayName;
                 const needsClean = hasApiCleanEvent || isCleanMatch;
@@ -287,6 +282,9 @@
 
                     let tasksHtml = '';
                     if (needsBin && prop.tasks.includes('Tonnen')) {
+                        // Alle gefundenen Tonnennamen (z.B. "Gelbe Tonne & Papiertonne") zusammenfassen
+                        const binTitles = [...new Set(matchingBinEvents.map(e => e.title))].join(' & ');
+
                         tasksHtml += `
                             <div class="flex items-center justify-between p-3 rounded-2xl glass-inner">
                                 <div class="flex items-center space-x-3">
@@ -294,8 +292,8 @@
                                         <i class="fa-solid fa-trash-can"></i>
                                     </div>
                                     <div>
-                                        <div class="text-xs font-bold text-white">Tonnendienst</div>
-                                        <div class="text-[11px] text-slate-300">Müllabholung am ${trashTargetObj.toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit' })}</div>
+                                        <div class="text-xs font-bold text-white">Tonnendienst: <span class="text-amber-300">${binTitles || 'Mülltonne'}</span></div>
+                                        <div class="text-[11px] text-slate-300">Anstehende Abfuhr</div>
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-2">
