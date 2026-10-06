@@ -26,11 +26,11 @@ const properties = [
     { 
         id: 3, 
         city: 'Duisburg', 
-        address: 'Krummenhakstr. 36, Duisburg', 
+        address: 'Krummenhakstr. 26, Duisburg', 
         tasks: ['Tonnen', 'Putzen'], 
         binDay: 'Mittwoch', 
         cleanDay: 'Dienstag', 
-        icsUrl: `https://api.abfall.io/?key=80acad6c77fe9342ebafad29a8c58bf6&mode=export&idhousenumber=35330&wastetypes=18,127&timeperiod=${currentYear}0101-${currentYear}1231&showinactive=false&type=ics` 
+        icsUrl: `https://api.abfall.io/?key=80acad6c77fe9342ebafad29a8c58bf6&mode=export&idhousenumber=35322&wastetypes=18,127&timeperiod=${currentYear}0101-${currentYear}1231&showinactive=false&type=ics` 
     },
 
     // --- ESSEN ---
